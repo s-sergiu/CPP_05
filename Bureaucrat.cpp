@@ -1,9 +1,17 @@
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(void)
+Bureaucrat::Bureaucrat(void) : name("Bureaucrat")
 {
 	grade = 0;
+	std::cout<<"Constructor"<<std::endl;
+}
+
+Bureaucrat::Bureaucrat(int _grade) : name ("Bureaucrat")
+{
+	if (_grade > LOWEST || _grade < HIGHEST)
+		throw 101;
+	grade = _grade;
 	std::cout<<"Constructor"<<std::endl;
 }
 
@@ -46,6 +54,8 @@ void Bureaucrat::GradeTooLowException(void)
 void Bureaucrat::incrementGrade(void)
 {
 	grade++;
+	if (grade > LOWEST || grade < HIGHEST)
+		throw 101;
 }
 
 void Bureaucrat::decrementGrade(void)
@@ -55,7 +65,7 @@ void Bureaucrat::decrementGrade(void)
 
 std::ostream& operator << (std::ostream &out, Bureaucrat &src)
 {
-	out<<src.getGrade()<<", bureaucrat grade "<<src.getGrade();
+	out<<src.getName()<<", bureaucrat grade "<<src.getGrade();
 	out<<"."<<std::endl;
 	return (out);
 }

@@ -4,6 +4,9 @@
 
 #include <iostream>
 
+#define HIGHEST 1
+#define LOWEST 150
+
 class Bureaucrat
 {
 	private:
@@ -11,6 +14,7 @@ class Bureaucrat
 		int					grade;
 	public:
 		Bureaucrat(void);
+		Bureaucrat(int _grade);
 		Bureaucrat(const Bureaucrat &src);
 		Bureaucrat operator = (const Bureaucrat &src);
 		~Bureaucrat(void);
