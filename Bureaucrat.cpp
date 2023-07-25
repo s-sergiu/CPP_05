@@ -9,8 +9,10 @@ Bureaucrat::Bureaucrat(void) : name("Bureaucrat")
 
 Bureaucrat::Bureaucrat(int _grade) : name ("Bureaucrat")
 {
-	if (_grade > LOWEST || _grade < HIGHEST)
+	if (_grade > LOWEST)
 		throw 101;
+	else if (_grade < HIGHEST)
+		throw 102;
 	grade = _grade;
 	std::cout<<"Constructor"<<std::endl;
 }
@@ -43,24 +45,24 @@ int Bureaucrat::getGrade(void)
 
 void Bureaucrat::GradeTooHighException(void)
 {
-
 }
 
 void Bureaucrat::GradeTooLowException(void)
 {
-
 }
 
 void Bureaucrat::incrementGrade(void)
 {
-	grade++;
-	if (grade > LOWEST || grade < HIGHEST)
-		throw 101;
+	grade--;
+	if (grade < HIGHEST)
+		throw myException("tes");
 }
 
 void Bureaucrat::decrementGrade(void)
 {
-	grade--;
+	grade++;
+	if (grade > LOWEST)
+		throw myException("tes");
 }
 
 std::ostream& operator << (std::ostream &out, Bureaucrat &src)

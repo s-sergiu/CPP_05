@@ -4,12 +4,16 @@
 int main(void)
 {
 	Bureaucrat test(150);
+	std::string word = "test";
 
-	try {
-		test.incrementGrade();
+
+	try	{
+		//std::cout<< word.at(4) << std::endl;
+		test.decrementGrade();
+		//test.incrementGrade();
 	}
-	catch (...) {
-		std::cout<<"error"<<std::endl;
+	catch (myException &e) {
+		std::cout<<"error "<<e.what()<<std::endl;
 	}
 	std::cout<<test;
 	return (0);

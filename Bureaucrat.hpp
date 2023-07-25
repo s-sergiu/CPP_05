@@ -3,9 +3,23 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
+#include <exception>
 
 #define HIGHEST 1
 #define LOWEST 150
+
+class myException : public std::exception
+{
+	private:
+		std::string	message;
+	public:
+		myException(std::string &msg) {
+			message += msg;
+		}
+		virtual const char* what() {
+			return (this->message).c_str();
+		}
+};
 
 class Bureaucrat
 {
