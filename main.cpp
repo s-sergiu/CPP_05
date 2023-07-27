@@ -3,18 +3,16 @@
 
 int main(void)
 {
-	Bureaucrat test(150);
-	std::string word = "test";
-
 
 	try	{
-		//std::cout<< word.at(4) << std::endl;
-		test.decrementGrade();
-		//test.incrementGrade();
+		Bureaucrat b1("Sergiu", 150);
+		Bureaucrat b2("Azer", 0);
+		//b1.decrementGrade();
 	}
-	catch (myException &e) {
-		std::cout<<"error "<<e.what()<<std::endl;
+	catch (std::exception &e) {
+		std::cout<<"Message: "<<e.what()<<std::endl;
 	}
-	std::cout<<test;
+	//std::cout<<b1;
+	//std::cout<<b2;
 	return (0);
 }

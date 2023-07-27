@@ -1,20 +1,46 @@
 
 #include "Bureaucrat.hpp"
 
+class Bureaucrat::GradeTooHighException : public std::exception
+{
+	private:
+		std::string msg;
+	public:
+		GradeTooHighException() : msg("Error: Grade too high...") {}
+		GradeTooHighException(std::string msg) : msg(msg) {}
+		~GradeTooHighException() throw() {}
+		const char* what() const throw() {
+			return msg.c_str();
+		}
+};
+
+class Bureaucrat::GradeTooLowException : public std::exception
+{
+	private:
+		std::string msg;
+	public:
+		GradeTooLowException() : msg("Error: Grade too low...") {}
+		GradeTooLowException(std::string msg) : msg(msg) {}
+		~GradeTooLowException() throw() {}
+		const char* what() const throw() {
+			return msg.c_str();
+		}
+};
+
 Bureaucrat::Bureaucrat(void) : name("Bureaucrat")
 {
-	grade = 0;
-	std::cout<<"Constructor"<<std::endl;
+	grade = 150;
+	std::cout<<"Bureaucrat initialized successfully!"<<std::endl;
 }
 
-Bureaucrat::Bureaucrat(int _grade) : name ("Bureaucrat")
+Bureaucrat::Bureaucrat(std::string _name, int _grade) : name(_name)
 {
 	if (_grade > LOWEST)
-		throw 101;
+		throw GradeTooHighException();
 	else if (_grade < HIGHEST)
-		throw 102;
+		throw GradeTooLowException();
 	grade = _grade;
-	std::cout<<"Constructor"<<std::endl;
+	std::cout<<"Bureaucrat initialized successfully!"<<std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &src)
@@ -30,7 +56,7 @@ Bureaucrat Bureaucrat::operator = (const Bureaucrat &src)
 
 Bureaucrat::~Bureaucrat(void)
 {
-	std::cout<<"Destructor"<<std::endl;
+	std::cout<<"Bureaucrat destroyed successfully!"<<std::endl;
 }
 
 const std::string	Bureaucrat::getName(void)
@@ -43,26 +69,20 @@ int Bureaucrat::getGrade(void)
 	return (grade);
 }
 
-void Bureaucrat::GradeTooHighException(void)
-{
-}
-
-void Bureaucrat::GradeTooLowException(void)
-{
-}
-
 void Bureaucrat::incrementGrade(void)
 {
-	grade--;
-	if (grade < HIGHEST)
-		throw myException("tes");
+	if ((grade - 1) < HIGHEST)
+		throw GradeTooHighException();
+	else
+		grade--;
 }
 
 void Bureaucrat::decrementGrade(void)
 {
-	grade++;
-	if (grade > LOWEST)
-		throw myException("tes");
+	if ((grade + 1) > LOWEST)
+		throw GradeTooLowException();
+	else
+		grade++;
 }
 
 std::ostream& operator << (std::ostream &out, Bureaucrat &src)

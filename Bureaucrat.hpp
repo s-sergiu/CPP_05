@@ -8,18 +8,7 @@
 #define HIGHEST 1
 #define LOWEST 150
 
-class myException : public std::exception
-{
-	private:
-		std::string	message;
-	public:
-		myException(std::string &msg) {
-			message += msg;
-		}
-		virtual const char* what() {
-			return (this->message).c_str();
-		}
-};
+
 
 class Bureaucrat
 {
@@ -28,16 +17,16 @@ class Bureaucrat
 		int					grade;
 	public:
 		Bureaucrat(void);
-		Bureaucrat(int _grade);
+		Bureaucrat(std::string _name, int _grade);
 		Bureaucrat(const Bureaucrat &src);
 		Bureaucrat operator = (const Bureaucrat &src);
 		~Bureaucrat(void);
 		const std::string getName(void);
 		int	getGrade(void);
-		void GradeTooHighException(void);
-		void GradeTooLowException(void);
 		void incrementGrade(void);
 		void decrementGrade(void);
+		class GradeTooHighException;
+		class GradeTooLowException;
 
 };
 
