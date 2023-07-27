@@ -8,8 +8,6 @@
 #define HIGHEST 1
 #define LOWEST 150
 
-
-
 class Bureaucrat
 {
 	private:
