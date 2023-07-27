@@ -6,8 +6,12 @@ class Bureaucrat::GradeTooHighException : public std::exception
 	private:
 		std::string msg;
 	public:
-		GradeTooHighException() : msg("Error: Grade too high...") {}
+		GradeTooHighException() : msg(" Error: ") {}
 		GradeTooHighException(std::string msg) : msg(msg) {}
+		GradeTooHighException(std::string _name, std::string msg) 
+			: msg(msg) {
+			msg.append(_name);	
+		}
 		~GradeTooHighException() throw() {}
 		const char* what() const throw() {
 			return msg.c_str();
@@ -17,30 +21,40 @@ class Bureaucrat::GradeTooHighException : public std::exception
 class Bureaucrat::GradeTooLowException : public std::exception
 {
 	private:
-		std::string msg;
+		std::string _msg;
+		std::string _name;
+		std::string _error;
 	public:
-		GradeTooLowException() : msg("Error: Grade too low...") {}
-		GradeTooLowException(std::string msg) : msg(msg) {}
+		GradeTooLowException() 
+			: _msg(" Error: "), _name("Bureaucrat") {}
+		GradeTooLowException(std::string msg) 
+			: _msg(msg.insert(0, "Bureaucrat")) {}
+		GradeTooLowException(std::string _name, std::string msg) 
+			: _msg(msg.insert(0, _name)), 
+			  _name(_name), 
+			  _error("Grade too Low!") {}
 		~GradeTooLowException() throw() {}
 		const char* what() const throw() {
-			return msg.c_str();
+			return _msg.c_str();
 		}
 };
 
-Bureaucrat::Bureaucrat(void) : name("Bureaucrat")
+Bureaucrat::Bureaucrat(void) 
+	: name("Bureaucrat"), grade(150)
 {
-	grade = 150;
-	std::cout<<"Bureaucrat initialized successfully!"<<std::endl;
+	std::cout<<"Bureaucrat "<<name;
+	std::cout<<" initialized successfully!"<<std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string _name, int _grade) : name(_name)
+Bureaucrat::Bureaucrat(std::string _name, int _grade) 
+	: name(_name), grade(_grade)
 {
 	if (_grade > LOWEST)
-		throw GradeTooHighException();
+		throw GradeTooHighException(_name, " Instantiating: ");
 	else if (_grade < HIGHEST)
-		throw GradeTooLowException();
-	grade = _grade;
-	std::cout<<"Bureaucrat initialized successfully!"<<std::endl;
+		throw GradeTooLowException(_name, " Instantiating: ");
+	std::cout<<"Bureaucrat "<<name;
+	std::cout<<" initialized successfully!"<<std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &src)
@@ -56,7 +70,8 @@ Bureaucrat Bureaucrat::operator = (const Bureaucrat &src)
 
 Bureaucrat::~Bureaucrat(void)
 {
-	std::cout<<"Bureaucrat destroyed successfully!"<<std::endl;
+	std::cout<<"Bureaucrat "<<name;
+	std::cout<<" destroyed successfully!"<<std::endl;
 }
 
 const std::string	Bureaucrat::getName(void)
@@ -72,7 +87,7 @@ int Bureaucrat::getGrade(void)
 void Bureaucrat::incrementGrade(void)
 {
 	if ((grade - 1) < HIGHEST)
-		throw GradeTooHighException();
+		throw GradeTooHighException("Increment: Grade too High!");
 	else
 		grade--;
 }
@@ -80,7 +95,7 @@ void Bureaucrat::incrementGrade(void)
 void Bureaucrat::decrementGrade(void)
 {
 	if ((grade + 1) > LOWEST)
-		throw GradeTooLowException();
+		throw GradeTooLowException("Decrement: Grade too Low!");
 	else
 		grade++;
 }
