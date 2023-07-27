@@ -9,6 +9,8 @@ int main(void)
 	Bureaucrat b5("Sergiu2");
 
 	try	{
+		b5.decrementGrade();
+		b5.decrementGrade();
 		b1.incrementGrade();
 		b1.incrementGrade();
 		b1.incrementGrade();

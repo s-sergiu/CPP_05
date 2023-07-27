@@ -8,10 +8,6 @@ class Bureaucrat::GradeTooHighException : public std::exception
 		std::string _name;
 		std::string _error;
 	public:
-		GradeTooHighException() 
-			: _msg(" Error: "), _name("Bureaucrat") {}
-		GradeTooHighException(std::string msg) 
-			: _msg(msg.insert(0, "Bureaucrat")) {}
 		GradeTooHighException(std::string _name, std::string msg) 
 			: _msg(msg.insert(0, _name)), 
 			  _name(_name), 
@@ -29,10 +25,6 @@ class Bureaucrat::GradeTooLowException : public std::exception
 		std::string _name;
 		std::string _error;
 	public:
-		GradeTooLowException() 
-			: _msg(" Error: "), _name("Bureaucrat") {}
-		GradeTooLowException(std::string msg) 
-			: _msg(msg.insert(0, "Bureaucrat")) {}
 		GradeTooLowException(std::string _name, std::string msg) 
 			: _msg(msg.insert(0, _name)), 
 			  _name(_name), 
