@@ -6,6 +6,7 @@ int main(void)
 
 	Bureaucrat b3;
 	Bureaucrat b1("Sergiu", 3);
+	Bureaucrat b5("Sergiu2");
 
 	try	{
 		b1.incrementGrade();
@@ -19,6 +20,7 @@ int main(void)
 
 	std::cout<<b3;
 	std::cout<<b1;
+	std::cout<<b5;
 
 	return (0);
 }

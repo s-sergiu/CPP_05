@@ -50,6 +50,13 @@ Bureaucrat::Bureaucrat(void)
 	std::cout<<"> initialized successfully!"<<std::endl;
 }
 
+Bureaucrat::Bureaucrat(std::string _name) 
+	: name(_name), grade(150)
+{
+	std::cout<<"Bureaucrat <"<<name;
+	std::cout<<"> initialized successfully!"<<std::endl;
+}
+
 Bureaucrat::Bureaucrat(std::string _name, int _grade) 
 	: name(_name), grade(_grade)
 {
