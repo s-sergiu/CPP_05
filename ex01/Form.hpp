@@ -2,23 +2,26 @@
 #ifndef FORM_HPP
 #define FORM_HPP
 
+#include <iostream>
+
 class Form 
 {
 	private:
 		const std::string	name;
-		bool				sign;
-		const int			grade_sign;
-		const int			grade_exec;
+		bool				isSigned;
+		const int			gradeSign;
+		const int			gradeExec;
 	public:
 		Form(void);
 		Form(const Form &src);
+		Form(const std::string _name, const int signGrade, const int execGrade);
 		Form operator = (const Form &src);
 		~Form(void);
-		const std::string	getName(void);
-		bool				getSign(void);
-		const int			getSignGrade(void);
-		const int			getExecGrade(void);
-		void				beSigned(class Bureaucrat);
+		const std::string	getName(void) const;
+		bool				getSign(void) const;
+		int					getSignGrade(void) const;
+		int					getExecGrade(void) const; 
+		void				beSigned(const class Bureaucrat);
 
 };
 
