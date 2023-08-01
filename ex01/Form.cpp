@@ -22,11 +22,7 @@ Form::Form(const Form &src)
 
 Form Form::operator = (const Form &src)
 {
-	this->name = src.getName();
 	this->isSigned = src.getSign();
-	this->gradeSign = src.getSignGrade();
-	this->gradeExec = src.getExecGrade();
-
 	return *this;
 }
 
@@ -45,7 +41,7 @@ std::ostream& operator << (std::ostream &out, Form &src)
 
 void Form::beSigned(const class Bureaucrat &src)
 {
-	if (src.getGrade() > grade_sign)
+	if (src.getGrade() > gradeSign)
 		this->isSigned = true;
 	else
 		throw("Grade too low");

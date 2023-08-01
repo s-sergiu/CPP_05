@@ -83,7 +83,7 @@ const std::string	Bureaucrat::getName(void)
 	return (this->name);
 }
 
-int Bureaucrat::getGrade(void)
+int Bureaucrat::getGrade(void) const
 {
 	return (this->grade);
 }

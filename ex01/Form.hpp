@@ -3,6 +3,7 @@
 #define FORM_HPP
 
 #include <iostream>
+#include "Bureaucrat.hpp"
 
 class Form 
 {
@@ -21,7 +22,7 @@ class Form
 		bool				getSign(void) const;
 		int					getSignGrade(void) const;
 		int					getExecGrade(void) const; 
-		void				beSigned(const class Bureaucrat);
+		void				beSigned(const class Bureaucrat &src);
 
 };
 
