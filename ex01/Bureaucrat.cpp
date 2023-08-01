@@ -109,8 +109,10 @@ void Bureaucrat::signForm(const class Form &_form)
 	if (_form.getSign() == true)	
 		std::cout<<name<<" signed form "<<_form.getName()<<std::endl;
 	else
+	{
 		std::cout<<name<<" couldn't sign form "<<_form.getName();
 		std::cout<<" because "<<"reason"<<"."<<std::endl;
+	}
 }
 
 std::ostream& operator << (std::ostream &out, Bureaucrat &src)
