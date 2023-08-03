@@ -23,6 +23,8 @@ class Form
 		int					getSignGrade(void) const;
 		int					getExecGrade(void) const; 
 		void				beSigned(const class Bureaucrat &src);
+		class				GradeTooLowException;
+		class				GradeTooHighException;
 
 };
 
