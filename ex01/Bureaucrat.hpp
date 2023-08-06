@@ -13,6 +13,7 @@ class Bureaucrat
 	private:
 		const std::string	name;
 		int					grade;
+		std::string			reason;
 	public:
 		Bureaucrat(void);
 		Bureaucrat(std::string _name);
@@ -20,13 +21,15 @@ class Bureaucrat
 		Bureaucrat(const Bureaucrat &src);
 		Bureaucrat operator = (const Bureaucrat &src);
 		~Bureaucrat(void);
-		const std::string	getName(void);
+		const std::string	getName(void) const;
 		int					getGrade(void) const;
 		void				incrementGrade(void);
 		void				decrementGrade(void);
 		class				GradeTooHighException;
 		class				GradeTooLowException;
 		void				signForm(const class Form &_form);
+		void				setReason(const std::string _reason);
+		std::string			getReason(void);
 
 };
 

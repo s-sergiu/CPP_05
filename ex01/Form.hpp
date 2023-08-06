@@ -5,6 +5,9 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
 
+#define HIGHEST 1
+#define LOWEST 150
+
 class Form 
 {
 	private:
@@ -12,6 +15,7 @@ class Form
 		bool				isSigned;
 		const int			gradeSign;
 		const int			gradeExec;
+		const Bureaucrat	*signer;
 	public:
 		Form(void);
 		Form(const Form &src);
@@ -22,12 +26,13 @@ class Form
 		bool				getSign(void) const;
 		int					getSignGrade(void) const;
 		int					getExecGrade(void) const; 
-		void				beSigned(const class Bureaucrat &src);
+		void				beSigned(class Bureaucrat &src);
 		class				GradeTooLowException;
 		class				GradeTooHighException;
+		const std::string	getSigner(void) const;
 
 };
 
-std::ostream& operator << (std::ostream &out, Bureaucrat &src);
+std::ostream& operator << (std::ostream &out, Form &src);
 
 #endif
