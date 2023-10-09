@@ -10,8 +10,8 @@ class Bureaucrat::GradeTooHighException : public std::exception
 	public:
 		GradeTooHighException(std::string _name, std::string msg) 
 			: _msg(msg.insert(0, _name)), 
-			  _name(_name), 
-			  _error("->Grade too Low!") { _msg.append(_error); }
+			_name(_name), 
+			_error("->Grade too Low!") { _msg.append(_error); }
 		~GradeTooHighException() throw() {}
 		const char* what() const throw() {
 			return _msg.c_str();
@@ -27,8 +27,8 @@ class Bureaucrat::GradeTooLowException : public std::exception
 	public:
 		GradeTooLowException(std::string _name, std::string msg) 
 			: _msg(msg.insert(0, _name)), 
-			  _name(_name), 
-			  _error("->Grade too Low!") { _msg.append(_error); }
+			_name(_name), 
+			_error("->Grade too Low!") { _msg.append(_error); }
 		~GradeTooLowException() throw() {}
 		const char* what() const throw() {
 			return _msg.c_str();
@@ -36,7 +36,7 @@ class Bureaucrat::GradeTooLowException : public std::exception
 };
 
 Bureaucrat::Bureaucrat(void) 
-	: name("Bureaucrat"), grade(150)
+	: name("Unnamed Bureaucrat"), grade(150)
 {
 	std::cout<<"Bureaucrat <"<<name;
 	std::cout<<"> initialized successfully!"<<std::endl;
@@ -61,6 +61,7 @@ Bureaucrat::Bureaucrat(std::string _name, int _grade)
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &src)
+	: name("Copied Bureaucrat")
 {
 	grade = src.grade;
 }

@@ -12,8 +12,9 @@ class AForm
 		const int			gradeSign;
 		const int			gradeExec;
 		const Bureaucrat	*signer;
-	public:
 		AForm(void);
+	public:
+		AForm(const std::string &target);
 		AForm(const AForm &src);
 		AForm(const std::string _name, const int signGrade, const int execGrade);
 		AForm operator = (const AForm &src);
@@ -22,10 +23,11 @@ class AForm
 		bool				getSign(void) const;
 		int					getSignGrade(void) const;
 		int					getExecGrade(void) const; 
-		virtual void		beSigned(class Bureaucrat &src) = 0;
+		virtual void		beSigned(class Bureaucrat &src);
 		class				GradeTooLowException;
 		class				GradeTooHighException;
 		const std::string	getSigner(void) const;
+
 
 };
 

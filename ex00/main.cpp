@@ -1,26 +1,33 @@
 
 #include "Bureaucrat.hpp"
 
+void	chcklks(void)	{
+	system ("leaks main");
+}
+
 int main(void)
 {
+	atexit(chcklks);
+	{
+		std::cout << "	#############" << std::endl;
+		std::cout << "	# CanonTEST #" << std::endl;
+		std::cout << "	#############" << std::endl;
 
-	Bureaucrat b3;
-	Bureaucrat b1("Da7men", 3);
-	Bureaucrat b5("Sergiu2");
+		Bureaucrat	Bob;
+		Bureaucrat	*Jon = new Bureaucrat("Jon", 1);
+		Bureaucrat	Jim("Jim", 111);
+		Bureaucrat	Ben(*Jon);
 
-	try	{
-		b1.incrementGrade();
-		b1.incrementGrade();
-		b1.incrementGrade();
-		Bureaucrat b2("Azer", 0);
+		std::cout << Bob << std::endl;
+		std::cout << *Jon << std::endl;
+		std::cout << Jim  << std::endl;
+		std::cout << Ben << std::endl;
+
+		Bob = Jim;
+
+		std::cout << Bob << std::endl;
+
+		delete Jon;
 	}
-	catch (std::exception &e) {
-		std::cout<<"Error: "<<e.what()<<std::endl;
-	}
-
-	std::cout<<b3;
-	std::cout<<b1;
-	std::cout<<b5;
-
 	return (0);
 }
