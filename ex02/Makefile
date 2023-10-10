@@ -4,11 +4,13 @@ FLAGS = -std=c++98 -Wall -Werror -Wextra
 
 SRC = main.cpp \
 	  Bureaucrat.cpp \
-	  AForm.cpp 
+	  AForm.cpp \
+	  ShrubberyCreationForm.cpp
 
 OBJ = main.o \
 	  Bureaucrat.o \
-	  AForm.o 
+	  AForm.o \
+	  ShrubberyCreationForm.o
 
 all:$(NAME)
 

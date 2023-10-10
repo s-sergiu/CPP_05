@@ -4,20 +4,22 @@
 
 #include "Bureaucrat.hpp"
 
+class Bureaucrat;
+
 class AForm 
 {
-	private:
+	protected:
 		const std::string	name;
 		bool				isSigned;
 		const int			gradeSign;
 		const int			gradeExec;
 		const Bureaucrat	*signer;
-		AForm(void);
 	public:
+		AForm(void);
 		AForm(const std::string &target);
 		AForm(const AForm &src);
 		AForm(const std::string _name, const int signGrade, const int execGrade);
-		AForm operator = (const AForm &src);
+		//AForm operator = (const AForm &src);
 		~AForm(void);
 		const std::string	getName(void) const;
 		bool				getSign(void) const;
@@ -27,6 +29,7 @@ class AForm
 		class				GradeTooLowException;
 		class				GradeTooHighException;
 		const std::string	getSigner(void) const;
+		virtual void		execute(Bureaucrat const & executor) const = 0;
 
 
 };

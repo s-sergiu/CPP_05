@@ -61,11 +61,13 @@ AForm::AForm(const AForm &src)
 	this->isSigned = src.getSign();
 }
 
+/*
 AForm AForm::operator = (const AForm &src)
 {
 	this->isSigned = src.getSign();
 	return *this;
 }
+*/
 
 AForm::~AForm(void)
 {
@@ -90,6 +92,7 @@ void AForm::beSigned(class Bureaucrat &src)
 	{
 		this->isSigned = true;
 		signer = &src;
+		std::cout<<"Form signed by "<<src.getName()<<std::endl;
 	}
 	else
 	{
