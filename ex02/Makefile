@@ -5,12 +5,16 @@ FLAGS = -std=c++98 -Wall -Werror -Wextra
 SRC = main.cpp \
 	  Bureaucrat.cpp \
 	  AForm.cpp \
-	  ShrubberyCreationForm.cpp
+	  ShrubberyCreationForm.cpp \
+	  RobotomyRequestForm.cpp \
+	  PresidentialPardonForm.cpp
 
 OBJ = main.o \
 	  Bureaucrat.o \
 	  AForm.o \
-	  ShrubberyCreationForm.o
+	  ShrubberyCreationForm.o \
+	  RobotomyRequestForm.o \
+	  PresidentialPardonForm.o
 
 all:$(NAME)
 
