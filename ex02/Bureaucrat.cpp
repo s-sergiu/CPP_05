@@ -107,10 +107,11 @@ void Bureaucrat::decrementGrade(void)
 void Bureaucrat::signForm(const class AForm &_form)
 {
 
-	if (_form.getSign() == true)	
+	if (_form.getSign() == false)	
 	{
 		std::cout<<name<<" signed "<<_form.getName()<<".";
 		std::cout<<std::endl;
+		_form.beSigned(*this);
 	}
 	else
 	{
@@ -131,7 +132,20 @@ std::string Bureaucrat::getReason(void)
 	return (this->reason);
 }
 
-void Bureaucrat::setReason(const std::string _reason) 
+void Bureaucrat::setReason(std::string _reason) const
 {
-	reason = _reason;
+	(void)_reason;
+}
+
+void Bureaucrat::executeForm(const AForm &form)
+{
+	try
+	{
+		form.execute(*this);		
+	}
+	catch (std::exception &e)
+	{
+		std::cout<<"\e[31mError:"<<e.what()<<std::endl;
+	}
+	//std::cout<<this->getName()<<" executed "<<form.getName()<<std::endl;
 }

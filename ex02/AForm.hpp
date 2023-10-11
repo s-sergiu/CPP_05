@@ -13,7 +13,7 @@ class AForm
 		bool				isSigned;
 		const int			gradeSign;
 		const int			gradeExec;
-		const Bureaucrat	*signer;
+		Bureaucrat			*signer;
 	public:
 		AForm(void);
 		AForm(const std::string &target);
@@ -25,10 +25,11 @@ class AForm
 		bool				getSign(void) const;
 		int					getSignGrade(void) const;
 		int					getExecGrade(void) const; 
-		virtual void		beSigned(class Bureaucrat &src);
+		void				beSigned(Bureaucrat const &src) const;
 		class				GradeTooLowException;
 		class				GradeTooHighException;
 		const std::string	getSigner(void) const;
+		void				setSigner(Bureaucrat const *b) const;
 		virtual void		execute(Bureaucrat const & executor) const = 0;
 
 

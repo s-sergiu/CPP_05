@@ -39,7 +39,9 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 	//check if the form is signed and grade is high enough;
 	srand(time(NULL));
-	if (this->getSign() == true && executor.getGrade() >= this->getExecGrade())
+	std::cout<<"Executor's grade: "<<executor.getGrade()<<std::endl;
+	std::cout<<"Form's grade: "<<this->getExecGrade()<<std::endl;
+	if (this->getSign() == true && executor.getGrade() <= this->getExecGrade())
 	{
 		std::cout<<"Brrrrrrrrrrrrrrrrrrrrrrrrrr....!!!!!!"<<std::endl;
 		if (rand() % 2)
