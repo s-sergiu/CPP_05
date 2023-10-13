@@ -86,12 +86,12 @@ std::ostream& operator << (std::ostream &out, AForm &src)
 	return (out);
 }
 
-void AForm::beSigned(Bureaucrat const *src) 
+void AForm::beSigned(Bureaucrat const *src) const
 {
 	if (src->getGrade() <= gradeSign)
 	{
 		this->beSigned(src);
-		this->setSigner(*src);
+		this->setSigner(src);
 		std::cout<<"Form signed by "<<src->getName()<<std::endl;
 	}
 	else
@@ -126,7 +126,7 @@ const std::string AForm::getSigner(void) const
 	return (this->signer->getName());
 }
 
-void AForm::setSigner(Bureaucrat const &b) 
+void AForm::setSigner(Bureaucrat const *b) const
 {
 	signer = &b;
 }

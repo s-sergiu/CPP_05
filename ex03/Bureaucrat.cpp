@@ -104,19 +104,19 @@ void Bureaucrat::decrementGrade(void)
 		this->grade++;
 }
 
-void Bureaucrat::signForm(AForm &_form)
+void Bureaucrat::signForm(const class AForm &_form)
 {
 
-	if (_form.getSign() == false && _form.getSignGrade() >= this->getGrade())	
+	if (_form.getSign() == false)	
 	{
 		std::cout<<name<<" signed "<<_form.getName()<<".";
 		std::cout<<std::endl;
-		//_form.beSigned(this);
+		_form.beSigned(*this);
 	}
 	else
 	{
 		std::cout<<name<<" couldn't sign form "<<_form.getName();
-		std::cout<<" because: \e[31m"<<this->getReason()<<"\e[0m"<<std::endl;
+		std::cout<<" because: \e[31m"<<this->getReason()<<std::endl;
 	}
 }
 

@@ -6,7 +6,7 @@
 
 int main(void)
 {
-	Bureaucrat b1("Sergiu", 100);
+	Bureaucrat b1("Sergiu", 10);
 	try
 	{
 		RobotomyRequestForm object("Home");

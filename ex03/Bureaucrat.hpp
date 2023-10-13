@@ -9,8 +9,6 @@
 #define HIGHEST 1
 #define LOWEST 150
 
-class AForm;
-
 class Bureaucrat
 {
 	private:
@@ -30,7 +28,7 @@ class Bureaucrat
 		void				decrementGrade(void);
 		class				GradeTooHighException;
 		class				GradeTooLowException;
-		void				signForm(AForm &_form);
+		void				signForm(const class AForm &_form);
 		void				setReason(const std::string _reason) const;
 		std::string			getReason(void);
 		void				executeForm(const AForm &form);
