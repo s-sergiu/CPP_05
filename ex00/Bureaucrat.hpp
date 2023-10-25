@@ -1,4 +1,3 @@
-
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
@@ -14,12 +13,12 @@ class Bureaucrat
 		const std::string	name;
 		int					grade;
 	public:
-		Bureaucrat(void);
+		Bureaucrat();
 		Bureaucrat(std::string _name);
 		Bureaucrat(std::string _name, int _grade);
 		Bureaucrat(const Bureaucrat &src);
 		Bureaucrat operator = (const Bureaucrat &src);
-		~Bureaucrat(void);
+		~Bureaucrat();
 		const std::string getName(void);
 		int	getGrade(void);
 		void incrementGrade(void);

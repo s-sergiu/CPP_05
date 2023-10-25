@@ -1,18 +1,20 @@
 
 #include "Bureaucrat.hpp"
 
+// Exception class
+// ------------------------------------------------------------------------
+
 class Bureaucrat::GradeTooHighException : public std::exception
 {
 	private:
 		std::string _msg;
-		std::string _name;
 		std::string _error;
 	public:
 		GradeTooHighException(std::string _name, std::string msg) 
-			: _msg(msg.insert(0, _name)), 
-			_name(_name), 
-			_error("->Grade too Low!") { _msg.append(_error); }
+			: _msg(msg.insert(0, _name))
+			{ _msg.append(" \e[91m -> Grade too high!\e[0m"); }
 		~GradeTooHighException() throw() {}
+
 		const char* what() const throw() {
 			return _msg.c_str();
 		}
@@ -22,31 +24,35 @@ class Bureaucrat::GradeTooLowException : public std::exception
 {
 	private:
 		std::string _msg;
-		std::string _name;
 		std::string _error;
 	public:
 		GradeTooLowException(std::string _name, std::string msg) 
-			: _msg(msg.insert(0, _name)), 
-			_name(_name), 
-			_error("->Grade too Low!") { _msg.append(_error); }
+			: _msg(msg.insert(0, _name)) 
+			{ _msg.append(" \e[96m-> Grade too low!\e[0m"); }
 		~GradeTooLowException() throw() {}
+
 		const char* what() const throw() {
 			return _msg.c_str();
 		}
 };
 
-Bureaucrat::Bureaucrat(void) 
+// Constructor class
+// ------------------------------------------------------------------------
+
+Bureaucrat::Bureaucrat() 
 	: name("Unnamed Bureaucrat"), grade(150)
 {
 	std::cout<<"Bureaucrat <"<<name;
-	std::cout<<"> initialized successfully!"<<std::endl;
+	std::cout<<"> initialized successfully, ";
+	std::cout<<"with grade (rank): "<<grade<<"!"<<std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string _name) 
 	: name(_name), grade(150)
 {
 	std::cout<<"Bureaucrat <"<<name;
-	std::cout<<"> initialized successfully!"<<std::endl;
+	std::cout<<"> initialized successfully, ";
+	std::cout<<"with grade (rank): "<<grade<<"!"<<std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string _name, int _grade) 
@@ -57,7 +63,8 @@ Bureaucrat::Bureaucrat(std::string _name, int _grade)
 	else if (_grade < HIGHEST)
 		throw GradeTooLowException(_name, ":Instantiating");
 	std::cout<<"Bureaucrat <"<<name;
-	std::cout<<"> initialized successfully!"<<std::endl;
+	std::cout<<"> initialized successfully, ";
+	std::cout<<"with grade (rank): "<<grade<<"!"<<std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &src)
@@ -72,11 +79,14 @@ Bureaucrat Bureaucrat::operator = (const Bureaucrat &src)
 	return *this;
 }
 
-Bureaucrat::~Bureaucrat(void)
+Bureaucrat::~Bureaucrat()
 {
 	std::cout<<"Bureaucrat <"<<name;
 	std::cout<<"> destroyed successfully!"<<std::endl;
 }
+
+// Class functions 
+// ------------------------------------------------------------------------
 
 const std::string	Bureaucrat::getName(void)
 {
@@ -103,6 +113,9 @@ void Bureaucrat::decrementGrade(void)
 	else
 		this->grade++;
 }
+
+// Overloaded operators
+// ------------------------------------------------------------------------
 
 std::ostream& operator << (std::ostream &out, Bureaucrat &src)
 {
