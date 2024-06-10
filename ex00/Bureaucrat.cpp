@@ -58,9 +58,9 @@ Bureaucrat::Bureaucrat(std::string _name)
 Bureaucrat::Bureaucrat(std::string _name, int _grade) 
 	: name(_name), grade(_grade)
 {
-	if (_grade > LOWEST)
+	if (_grade < HIGHEST)
 		throw GradeTooHighException(_name, ":Instantiating");
-	else if (_grade < HIGHEST)
+	else if (_grade > LOWEST)
 		throw GradeTooLowException(_name, ":Instantiating");
 	std::cout<<"Bureaucrat <"<<name;
 	std::cout<<"> initialized successfully, ";
@@ -109,7 +109,7 @@ void Bureaucrat::incrementGrade(void)
 void Bureaucrat::decrementGrade(void)
 {
 	if ((grade + 1) > LOWEST)
-		throw GradeTooLowException(name, ":Incrementing");
+		throw GradeTooLowException(name, ":Decrementing");
 	else
 		this->grade++;
 }
