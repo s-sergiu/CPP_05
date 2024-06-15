@@ -15,7 +15,6 @@ class Form
 		bool				isSigned;
 		const int			gradeSign;
 		const int			gradeExec;
-		const Bureaucrat	*signer;
 	public:
 		Form(void);
 		Form(const Form &src);
@@ -29,7 +28,6 @@ class Form
 		void				beSigned(class Bureaucrat &src);
 		class				GradeTooLowException;
 		class				GradeTooHighException;
-		const std::string	getSigner(void) const;
 
 };
 

@@ -1,17 +1,19 @@
 
 #include "Form.hpp"
 
+// Exception class
+// ------------------------------------------------------------------------
+
 class Form::GradeTooHighException : public std::exception
 {
 	private:
 		std::string _msg;
-		std::string _name;
-		std::string _error;
 	public:
 		GradeTooHighException(std::string _name, std::string msg) 
-			: _msg(msg.insert(0, _name)), 
-			  _name(_name), 
-			  _error("->Grade too High!\e[0m") { _msg.append(_error); }
+			: _msg(msg.insert(0, _name)) {
+		_msg.insert(0, "\e[4m"); 
+		_msg.append(" \e[91m -> Grade too high!\e[0m"); 
+		}
 		~GradeTooHighException() throw() {}
 		const char* what() const throw() {
 			return _msg.c_str();
@@ -22,18 +24,20 @@ class Form::GradeTooLowException : public std::exception
 {
 	private:
 		std::string _msg;
-		std::string _name;
-		std::string _error;
 	public:
 		GradeTooLowException(std::string _name, std::string msg) 
-			: _msg(msg.insert(0, _name)), 
-			  _name(_name), 
-			  _error("->Grade too Low!\e[0m") { _msg.append(_error); }
+			: _msg(msg.insert(0, _name)) {
+		_msg.insert(0, "\e[4m"); 
+		_msg.append(" \e[91m -> Grade too low!\e[0m"); 
+		}
 		~GradeTooLowException() throw() {}
 		const char* what() const throw() {
 			return _msg.c_str();
 		}
 };
+
+// Constructor class
+// ------------------------------------------------------------------------
 
 Form::Form(void) 
 	: name("<Form>"), isSigned(false),

@@ -13,7 +13,6 @@ class Bureaucrat
 	private:
 		const std::string	name;
 		int					grade;
-		std::string			reason;
 	public:
 		Bureaucrat(void);
 		Bureaucrat(std::string _name);
@@ -28,8 +27,6 @@ class Bureaucrat
 		class				GradeTooHighException;
 		class				GradeTooLowException;
 		void				signForm(const class Form &_form);
-		void				setReason(const std::string _reason);
-		std::string			getReason(void);
 
 };
 
