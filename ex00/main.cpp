@@ -35,16 +35,19 @@ int main(void)
 		} catch (std::exception &e) {
 			std::cout<<"\e[41mERROR:\e[0m "<<e.what()<<std::endl;	
 		}
-
+		// creating empty pointer to save Bob's address and free it at the end;
+		Bureaucrat *empty_ptr = Bob;
 		Bob = Jon;
 
 		std::cout <<*Bob << std::endl;
 
+		delete empty_ptr;
 		delete Jon;
 	}
 	catch(std::exception &e)
 	{
 		std::cout<<"\e[41mERROR:\e[0m "<<e.what()<<std::endl;	
 	}
+	atexit(chcklks);
 	return (0);
 }
