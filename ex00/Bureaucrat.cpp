@@ -90,12 +90,12 @@ Bureaucrat::~Bureaucrat()
 // Class functions 
 // ------------------------------------------------------------------------
 
-const std::string	Bureaucrat::getName(void)
+const std::string	Bureaucrat::getName(void) const
 {
 	return (this->name);
 }
 
-int Bureaucrat::getGrade(void)
+int Bureaucrat::getGrade(void) const
 {
 	return (this->grade);
 }
