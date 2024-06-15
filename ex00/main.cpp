@@ -10,14 +10,14 @@ int main(void)
 {
 	try
 	{
-		Bureaucrat	*Bob = new Bureaucrat("test", 2);
+		Bureaucrat	*Bob = new Bureaucrat("Bobby", 50);
 		Bureaucrat	Sergiu("Sergiu");
 		Bureaucrat	*Jon = new Bureaucrat("Jon", 1);
 		Bureaucrat	Jim("Jim", 150);
 		Bureaucrat	Ben(*Jon);
 
 		std::cout << std::endl;
-		std::cout << Bob;
+		std::cout << *Bob;
 		std::cout << Sergiu;
 		std::cout << *Jon;
 		std::cout << Jim;
