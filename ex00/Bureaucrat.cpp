@@ -8,11 +8,12 @@ class Bureaucrat::GradeTooHighException : public std::exception
 {
 	private:
 		std::string _msg;
-		std::string _error;
 	public:
 		GradeTooHighException(std::string _name, std::string msg) 
-			: _msg(msg.insert(0, _name))
-			{ _msg.append(" \e[91m -> Grade too high!\e[0m"); }
+			: _msg(msg.insert(0, _name)) { 
+		_msg.insert(0, "\e[4m"); 
+		_msg.append(" \e[91m -> Grade too high!\e[0m"); 
+		}
 		~GradeTooHighException() throw() {}
 
 		const char* what() const throw() {
@@ -24,11 +25,12 @@ class Bureaucrat::GradeTooLowException : public std::exception
 {
 	private:
 		std::string _msg;
-		std::string _error;
 	public:
 		GradeTooLowException(std::string _name, std::string msg) 
-			: _msg(msg.insert(0, _name)) 
-			{ _msg.append(" \e[96m-> Grade too low!\e[0m"); }
+			: _msg(msg.insert(0, _name)) {	
+		_msg.insert(0, "\e[4m"); 
+		_msg.append(" \e[96m-> Grade too low!\e[0m");
+		}
 		~GradeTooLowException() throw() {}
 
 		const char* what() const throw() {
