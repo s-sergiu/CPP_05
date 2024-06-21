@@ -19,18 +19,18 @@ class Form
 		Form(void);
 		Form(const Form &src);
 		Form(const std::string _name, const int signGrade, const int execGrade);
-		Form operator = (const Form &src);
+		Form operator = (const Form &);
 		~Form(void);
 		const std::string	getName(void) const;
 		bool				getSign(void) const;
 		int					getSignGrade(void) const;
 		int					getExecGrade(void) const; 
-		void				beSigned(class Bureaucrat &src);
+		void				beSigned(const class Bureaucrat &);
 		class				GradeTooLowException;
 		class				GradeTooHighException;
 
 };
 
-std::ostream& operator << (std::ostream &out, Form &src);
+std::ostream& operator << (std::ostream &out, Form &);
 
 #endif

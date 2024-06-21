@@ -125,19 +125,18 @@ void Bureaucrat::signForm(const class Form &_form)
 	}
 	else
 	{
-		std::cout<<name<<" couldn't sign form "<<_form.getName();
-		std::cout<<" because: \e[31m"<<this->getReason()<<std::endl;
+		std::cout<<name<<" couldn't sign form "<<_form.getName()<<"with grade (";
+		std::cout<<_form.getSignGrade();
+		if (this->getGrade() < _form.getSignGrade()) {
+			std::cout<<") because: \e[31m"<<"the Bureaucrat's grade ("<<this->getGrade(); 
+			std::cout<<") was too low!\e[0m";
+			std::cout<<std::endl;
+		} else {
+			std::cout<<") because: \e[31m"<<"the Bureaucrat's grade ("<<this->getGrade(); 
+			std::cout<<") was too high!\e[0m";
+			std::cout<<std::endl;
+		}
 	}
-}
-
-std::string Bureaucrat::getReason(void) 
-{
-	return (this->reason);
-}
-
-void Bureaucrat::setReason(const std::string _reason) 
-{
-	reason = _reason;
 }
 
 // Overloaded operators

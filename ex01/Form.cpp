@@ -77,29 +77,15 @@ Form::~Form(void)
 	std::cout<<"> destroyed successfully!"<<std::endl;
 }
 
-std::ostream& operator << (std::ostream &out, Form &src)
-{
-	out<<"Form <"<<src.getName();
-	if (src.getSign() == 1) 
-		out<<"> is signed by "<<src.getSigner()<<".";
-	else
-		out<<"> is not signed.";
-	out<<std::endl;
-	return (out);
-}
+// Class functions 
+// ------------------------------------------------------------------------
 
-void Form::beSigned(class Bureaucrat &src)
+void Form::beSigned(const class Bureaucrat &src)
 {
 	if (src.getGrade() <= gradeSign)
-	{
 		this->isSigned = true;
-		signer = &src;
-	}
 	else
-	{
-		src.setReason("Grade too Low!\e[0m");
 		throw(GradeTooLowException(name, "\e[31m:beSigned"));
-	}
 }
 
 bool Form::getSign(void) const
@@ -122,7 +108,17 @@ int Form::getExecGrade(void) const
 	return (this->gradeExec);
 }
 
-const std::string Form::getSigner(void) const
+// Overloaded operators
+// ------------------------------------------------------------------------
+
+std::ostream& operator << (std::ostream &out, Form &src)
 {
-	return (this->signer->getName());
+	out<<"Form <"<<src.getName();
+	if (src.getSign() == 1) 
+		out<<"> is signed by "<<src.getName()<<".";
+	else
+		out<<"> is not signed.";
+	out<<std::endl;
+	return (out);
 }
+
