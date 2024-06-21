@@ -5,8 +5,8 @@
 int main(void)
 {
 
-	Bureaucrat b1("Sergiu", 101);
-	Form form1("Document", 100, 130);
+	Bureaucrat b1("Sergiu", 11);
+	Form form1("Document", 20, 130);
 
 	try	{
 		form1.beSigned(b1);

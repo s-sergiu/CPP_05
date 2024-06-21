@@ -44,7 +44,9 @@ Form::Form(void)
 	  gradeSign(100), gradeExec(100)
 {
 	std::cout<<"Form <"<<name;
-	std::cout<<"> initialized successfully!"<<std::endl;
+	std::cout<<"> initialized successfully!";
+	std::cout<<" with required sign grade (";
+	std::cout<<this->getSignGrade()<<")"<<std::endl;
 }
 
 Form::Form(const std::string _name, const int signGrade, const int execGrade) 
@@ -56,7 +58,9 @@ Form::Form(const std::string _name, const int signGrade, const int execGrade)
 	else if (signGrade < HIGHEST || execGrade < HIGHEST)
 		throw GradeTooLowException(_name, ":Instantiating");
 	std::cout<<"Form <"<<name;
-	std::cout<<"> initialized successfully!"<<std::endl;
+	std::cout<<"> initialized successfully!";
+	std::cout<<" with required sign grade (";
+	std::cout<<this->getSignGrade()<<")"<<std::endl;
 }
 
 Form::Form(const Form &src)
@@ -115,7 +119,7 @@ std::ostream& operator << (std::ostream &out, Form &src)
 {
 	out<<"Form <"<<src.getName();
 	if (src.getSign() == 1) 
-		out<<"> is signed by "<<src.getName()<<".";
+		out<<"> is signed.";
 	else
 		out<<"> is not signed.";
 	out<<std::endl;
