@@ -5,7 +5,7 @@
 int main(void)
 {
 
-	Bureaucrat b1("Sergiu", 11);
+	Bureaucrat b1("Sergiu", 21);
 	Form form1("Document", 20, 130);
 
 	try	{
