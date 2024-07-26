@@ -53,9 +53,9 @@ Form::Form(const std::string _name, const int signGrade, const int execGrade)
 	: name(_name), isSigned(false), gradeSign(signGrade), 
 	  gradeExec(execGrade)
 {
-	if (_grade < HIGHEST)
+	if (this->gradeSign < HIGHEST || this->gradeExec < HIGHEST)
 		throw GradeTooHighException(_name, ":Instantiating");
-	else if (_grade > LOWEST)
+	else if (this->gradeSign > LOWEST || this->gradeSign > LOWEST)
 		throw GradeTooLowException(_name, ":Instantiating");
 	std::cout<<"Form <"<<this->getName();
 	std::cout<<"> initialized successfully!";
@@ -86,7 +86,7 @@ Form::~Form(void)
 
 void Form::beSigned(const class Bureaucrat &src)
 {
-	if (src.getGrade() <= gradeSign)
+	if (src.getGrade() <= this->getSignGrade())
 		this->isSigned = true;
 	else
 		throw(GradeTooLowException(name, "\e[31m:beSigned"));

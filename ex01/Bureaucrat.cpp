@@ -120,15 +120,20 @@ void Bureaucrat::signForm(const class Form &_form)
 
 	if (_form.getSign() == true)	
 	{
-		std::cout<<name<<" signed "<<_form.getName()<<".";
+		std::cout<<"\e[102m";
+		std::cout<<this->getName()<<" signed "<<_form.getName()<<".";
+		std::cout<<"\e[0m";
 		std::cout<<std::endl;
 	}
 	else
 	{
-		std::cout<<name<<" couldn't sign form "<<_form.getName()<<" with grade (";
-		std::cout<<_form.getSignGrade();
-		std::cout<<") because: \e[31m"<<"the Bureaucrat's grade ("<<this->getGrade(); 
-		std::cout<<") was too low!\e[0m";
+		std::cout<<"\e[101m";
+		std::cout<<this->getName()<<" couldn't sign form "<<_form.getName();
+		std::cout<<" with grade ("<<_form.getSignGrade();
+		std::cout<<") because: \e[92m"<<"the Bureaucrat's grade (";
+		std::cout<<this->getGrade()<<") was too low";
+		std::cout<<" than the form's grade ("<<_form.getSignGrade()<<")!\e[0m";
+		std::cout<<"\e[0m";
 		std::cout<<std::endl;
 	}
 }
