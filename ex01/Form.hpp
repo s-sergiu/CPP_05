@@ -25,9 +25,9 @@ class Form
 		bool				getSign(void) const;
 		int					getSignGrade(void) const;
 		int					getExecGrade(void) const; 
-		void				beSigned(const class Bureaucrat &);
 		class				GradeTooLowException;
 		class				GradeTooHighException;
+		void				beSigned(const class Bureaucrat &);
 
 };
 

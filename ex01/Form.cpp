@@ -9,7 +9,7 @@ class Form::GradeTooHighException : public std::exception
 	private:
 		std::string _msg;
 	public:
-		GradeTooHighException(std::string _name, std::string msg) 
+		GradeTooHighException(std::string _name, std::string msg) throw()
 			: _msg(msg.insert(0, _name)) {
 		_msg.insert(0, "\e[4m"); 
 		_msg.append(" \e[91m -> Grade too high!\e[0m"); 
@@ -25,7 +25,7 @@ class Form::GradeTooLowException : public std::exception
 	private:
 		std::string _msg;
 	public:
-		GradeTooLowException(std::string _name, std::string msg) 
+		GradeTooLowException(std::string _name, std::string msg) throw()
 			: _msg(msg.insert(0, _name)) {
 		_msg.insert(0, "\e[4m"); 
 		_msg.append(" \e[91m -> Grade too low!\e[0m"); 
@@ -45,26 +45,26 @@ Form::Form(void)
 {
 	std::cout<<"Form <"<<name;
 	std::cout<<"> initialized successfully!";
-	std::cout<<" with required sign grade (";
-	std::cout<<this->getSignGrade()<<")"<<std::endl;
+	std::cout<<" with required sign grade (rank): ";
+	std::cout<<this->getSignGrade()<<"!"<<std::endl;
 }
 
 Form::Form(const std::string _name, const int signGrade, const int execGrade) 
 	: name(_name), isSigned(false), gradeSign(signGrade), 
 	  gradeExec(execGrade)
 {
-	if (signGrade > LOWEST || execGrade > LOWEST)
+	if (_grade < HIGHEST)
 		throw GradeTooHighException(_name, ":Instantiating");
-	else if (signGrade < HIGHEST || execGrade < HIGHEST)
+	else if (_grade > LOWEST)
 		throw GradeTooLowException(_name, ":Instantiating");
 	std::cout<<"Form <"<<name;
 	std::cout<<"> initialized successfully!";
-	std::cout<<" with required sign grade (";
-	std::cout<<this->getSignGrade()<<")"<<std::endl;
+	std::cout<<" with required sign grade (rank): ";
+	std::cout<<this->getSignGrade()<<"!"<<std::endl;
 }
 
 Form::Form(const Form &src)
-	: gradeSign(src.gradeSign), gradeExec(src.gradeExec)
+	: name("Copied Form"), gradeSign(src.gradeSign), gradeExec(src.gradeExec)
 {
 	this->isSigned = src.getSign();
 }

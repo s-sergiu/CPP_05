@@ -9,7 +9,7 @@ class Bureaucrat::GradeTooHighException : public std::exception
 	private:
 		std::string _msg;
 	public:
-		GradeTooHighException(std::string _name, std::string msg) 
+		GradeTooHighException(std::string _name, std::string msg) throw()
 			: _msg(msg.insert(0, _name)) { 
 		_msg.insert(0, "\e[4m"); 
 		_msg.append(" \e[91m -> Grade too high!\e[0m"); 
@@ -25,7 +25,7 @@ class Bureaucrat::GradeTooLowException : public std::exception
 	private:
 		std::string _msg;
 	public:
-		GradeTooLowException(std::string _name, std::string msg) 
+		GradeTooLowException(std::string _name, std::string msg) throw()
 			: _msg(msg.insert(0, _name)) {	
 		_msg.insert(0, "\e[4m"); 
 		_msg.append(" \e[96m-> Grade too low!\e[0m");
@@ -50,9 +50,9 @@ Bureaucrat::Bureaucrat(void)
 Bureaucrat::Bureaucrat(std::string _name) 
 	: name(_name), grade(150)
 {
-	std::cout<<"Bureaucrat <"<<name;
+	std::cout<<"Bureaucrat <"<<this->getName();
 	std::cout<<"> initialized successfully!"<<std::endl;
-	std::cout<<"with grade (rank): "<<grade<<"!"<<std::endl;
+	std::cout<<"with grade (rank): "<<this->getGrade()<<"!"<<std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string _name, int _grade) 
@@ -62,15 +62,15 @@ Bureaucrat::Bureaucrat(std::string _name, int _grade)
 		throw GradeTooHighException(_name, ":Instantiating");
 	else if (_grade > LOWEST)
 		throw GradeTooLowException(_name, ":Instantiating");
-	std::cout<<"Bureaucrat <"<<name;
+	std::cout<<"Bureaucrat <"<<this->getName();
 	std::cout<<"> initialized successfully!"<<std::endl;
-	std::cout<<"with grade (rank): "<<grade<<"!"<<std::endl;
+	std::cout<<"with grade (rank): "<<this->getGrade()<<"!"<<std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &src)
 	: name("Copied Bureaucrat")
 {
-	grade = src.grade;
+	this->grade = src.grade;
 }
 
 Bureaucrat Bureaucrat::operator = (const Bureaucrat &src)
@@ -81,7 +81,7 @@ Bureaucrat Bureaucrat::operator = (const Bureaucrat &src)
 
 Bureaucrat::~Bureaucrat(void)
 {
-	std::cout<<"Bureaucrat <"<<name;
+	std::cout<<"Bureaucrat <"<<this->getName();
 	std::cout<<"> destroyed successfully!"<<std::endl;
 }
 
