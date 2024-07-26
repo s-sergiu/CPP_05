@@ -17,8 +17,8 @@ class Form
 		const int			gradeExec;
 	public:
 		Form(void);
-		Form(const Form &src);
-		Form(const std::string _name, const int signGrade, const int execGrade);
+		Form(const Form &);
+		Form(const std::string, const int, const int);
 		Form operator = (const Form &);
 		~Form(void);
 		const std::string	getName(void) const;
@@ -31,6 +31,6 @@ class Form
 
 };
 
-std::ostream& operator << (std::ostream &out, Form &);
+std::ostream& operator << (std::ostream &, Form &);
 
 #endif

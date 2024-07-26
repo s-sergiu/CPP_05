@@ -40,11 +40,11 @@ class Form::GradeTooLowException : public std::exception
 // ------------------------------------------------------------------------
 
 Form::Form(void) 
-	: name("<Form>"), isSigned(false),
+	: name("Unnamed Form"), isSigned(false),
 	  gradeSign(100), gradeExec(100)
 {
-	std::cout<<"Form <"<<name;
-	std::cout<<"> initialized successfully!";
+	std::cout<<"Form <"<<this->getName();
+	std::cout<<"> initialized successfully!"<<std::endl;
 	std::cout<<" with required sign grade (rank): ";
 	std::cout<<this->getSignGrade()<<"!"<<std::endl;
 }
@@ -57,7 +57,7 @@ Form::Form(const std::string _name, const int signGrade, const int execGrade)
 		throw GradeTooHighException(_name, ":Instantiating");
 	else if (_grade > LOWEST)
 		throw GradeTooLowException(_name, ":Instantiating");
-	std::cout<<"Form <"<<name;
+	std::cout<<"Form <"<<this->getName();
 	std::cout<<"> initialized successfully!";
 	std::cout<<" with required sign grade (rank): ";
 	std::cout<<this->getSignGrade()<<"!"<<std::endl;
