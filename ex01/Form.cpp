@@ -44,8 +44,8 @@ Form::Form(void)
 	  gradeSign(100), gradeExec(100)
 {
 	std::cout<<"Form <"<<this->getName();
-	std::cout<<"> initialized successfully!"<<std::endl;
-	std::cout<<" with required sign grade (rank): ";
+	std::cout<<"> initialized successfully!";
+	std::cout<<" -- with required sign grade (rank): ";
 	std::cout<<this->getSignGrade()<<"!"<<std::endl;
 }
 
@@ -59,7 +59,7 @@ Form::Form(const std::string _name, const int signGrade, const int execGrade)
 		throw GradeTooLowException(_name, ":Instantiating");
 	std::cout<<"Form <"<<this->getName();
 	std::cout<<"> initialized successfully!";
-	std::cout<<" with required sign grade (rank): ";
+	std::cout<<" -- with required sign grade (rank): ";
 	std::cout<<this->getSignGrade()<<"!"<<std::endl;
 }
 
@@ -77,7 +77,7 @@ Form Form::operator = (const Form &src)
 
 Form::~Form(void)
 {
-	std::cout<<"Form <"<<name;
+	std::cout<<"Form <"<<this->getName();
 	std::cout<<"> destroyed successfully!"<<std::endl;
 }
 
