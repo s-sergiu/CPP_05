@@ -43,10 +43,12 @@ Bureaucrat::Bureaucrat(void)
 	: name("\e[105m Unnamed Bureaucrat \e[0m"), grade(150)
 {
 	std::cout<<"\e[47m\e[30m";
-	std::cout<<"Bureaucrat <"<<this->getName();
+	std::cout<<"Bureaucrat < \e[106m"<<this->getName()<<"\e[0m";
 	std::cout<<"\e[47m\e[30m";
 	std::cout<<"> initialized successfully!";
-	std::cout<<" -- with grade (rank): "<<this->getGrade()<<"!"<<std::endl;
+	std::cout<<" -- with grade (rank): \e[106m"<<this->getGrade();
+	std::cout<<"\e[47m\e[30m";
+	std::cout<<"!"<<std::endl;
 	std::cout<<"\e[0m";
 }
 
@@ -54,9 +56,12 @@ Bureaucrat::Bureaucrat(std::string _name)
 	: name(_name), grade(150)
 {
 	std::cout<<"\e[47m\e[30m";
-	std::cout<<"Bureaucrat <"<<this->getName();
+	std::cout<<"Bureaucrat < \e[106m"<<this->getName()<<"\e[0m";
+	std::cout<<"\e[47m\e[30m";
 	std::cout<<"> initialized successfully!";
-	std::cout<<" -- with grade (rank): "<<this->getGrade()<<"!"<<std::endl;
+	std::cout<<" -- with grade (rank): \e[106m"<<this->getGrade();
+	std::cout<<"\e[47m\e[30m";
+	std::cout<<"!"<<std::endl;
 	std::cout<<"\e[0m";
 }
 
@@ -68,9 +73,12 @@ Bureaucrat::Bureaucrat(std::string _name, int _grade)
 	else if (_grade > LOWEST)
 		throw GradeTooLowException(_name, ":Instantiating");
 	std::cout<<"\e[47m\e[30m";
-	std::cout<<"Bureaucrat <"<<this->getName();
+	std::cout<<"Bureaucrat < \e[106m"<<this->getName()<<"\e[0m";
+	std::cout<<"\e[47m\e[30m";
 	std::cout<<"> initialized successfully!";
-	std::cout<<" -- with grade (rank): "<<this->getGrade()<<"!"<<std::endl;
+	std::cout<<" -- with grade (rank): \e[106m"<<this->getGrade();
+	std::cout<<"\e[47m\e[30m";
+	std::cout<<"!"<<std::endl;
 	std::cout<<"\e[0m";
 }
 
@@ -89,7 +97,7 @@ Bureaucrat Bureaucrat::operator = (const Bureaucrat &src)
 Bureaucrat::~Bureaucrat(void)
 {
 	std::cout<<"\e[101m";
-	std::cout<<"Bureaucrat <"<<this->getName();
+	std::cout<<"Bureaucrat < \e[106m\e[31m"<<this->getName()<<"\e[0m";
 	std::cout<<"\e[101m";
 	std::cout<<"> destroyed successfully!"<<std::endl;
 	std::cout<<"\e[0m";
