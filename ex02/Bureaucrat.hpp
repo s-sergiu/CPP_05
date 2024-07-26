@@ -16,13 +16,12 @@ class Bureaucrat
 	private:
 		const std::string	name;
 		int					grade;
-		std::string			reason;
 	public:
 		Bureaucrat(void);
-		Bureaucrat(std::string _name);
-		Bureaucrat(std::string _name, int _grade);
-		Bureaucrat(const Bureaucrat &src);
-		Bureaucrat operator = (const Bureaucrat &src);
+		Bureaucrat(std::string);
+		Bureaucrat(std::string, int);
+		Bureaucrat(const Bureaucrat &);
+		Bureaucrat operator = (const Bureaucrat &);
 		~Bureaucrat(void);
 		const std::string	getName(void) const;
 		int					getGrade(void) const;
@@ -30,12 +29,10 @@ class Bureaucrat
 		void				decrementGrade(void);
 		class				GradeTooHighException;
 		class				GradeTooLowException;
-		void				signForm(AForm &_form);
-		void				setReason(const std::string _reason) const;
-		std::string			getReason(void);
-		void				executeForm(const AForm &form);
+		void				signForm(const class Form &);
+		void				executeForm(const AForm &);
 };
 
-std::ostream& operator << (std::ostream &out, Bureaucrat &src);
+std::ostream& operator << (std::ostream &, Bureaucrat &);
 
 #endif

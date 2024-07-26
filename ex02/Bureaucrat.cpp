@@ -1,18 +1,19 @@
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+// Exception class
+// ------------------------------------------------------------------------
 
 class Bureaucrat::GradeTooHighException : public std::exception
 {
 	private:
 		std::string _msg;
-		std::string _name;
-		std::string _error;
 	public:
 		GradeTooHighException(std::string _name, std::string msg) 
-			: _msg(msg.insert(0, _name)), 
-			  _name(_name), 
-			  _error("->Grade too High!\e[0m") { _msg.append(_error); }
+			: _msg(msg.insert(0, _name)) { 
+		_msg.insert(0, "\e[4m"); 
+		_msg.append(" \e[91m -> Grade too high!\e[0m"); 
+		}
 		~GradeTooHighException() throw() {}
 		const char* what() const throw() {
 			return _msg.c_str();
@@ -23,24 +24,27 @@ class Bureaucrat::GradeTooLowException : public std::exception
 {
 	private:
 		std::string _msg;
-		std::string _name;
-		std::string _error;
 	public:
 		GradeTooLowException(std::string _name, std::string msg) 
-			: _msg(msg.insert(0, _name)), 
-			  _name(_name), 
-			  _error("->Grade too Low!\e[0m") { _msg.append(_error); }
+			: _msg(msg.insert(0, _name)) {	
+		_msg.insert(0, "\e[4m"); 
+		_msg.append(" \e[96m-> Grade too low!\e[0m");
+		}
 		~GradeTooLowException() throw() {}
 		const char* what() const throw() {
 			return _msg.c_str();
 		}
 };
 
+// Constructor class
+// ------------------------------------------------------------------------
+
 Bureaucrat::Bureaucrat(void) 
-	: name("Bureaucrat"), grade(150)
+	: name("Unnamed Bureaucrat"), grade(150)
 {
 	std::cout<<"Bureaucrat <"<<name;
 	std::cout<<"> initialized successfully!"<<std::endl;
+	std::cout<<"with grade (rank): "<<grade<<"!"<<std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string _name) 
@@ -48,20 +52,23 @@ Bureaucrat::Bureaucrat(std::string _name)
 {
 	std::cout<<"Bureaucrat <"<<name;
 	std::cout<<"> initialized successfully!"<<std::endl;
+	std::cout<<"with grade (rank): "<<grade<<"!"<<std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string _name, int _grade) 
 	: name(_name), grade(_grade)
 {
-	if (_grade > LOWEST)
+	if (_grade < HIGHEST)
 		throw GradeTooHighException(_name, ":Instantiating");
-	else if (_grade < HIGHEST)
+	else if (_grade > LOWEST)
 		throw GradeTooLowException(_name, ":Instantiating");
 	std::cout<<"Bureaucrat <"<<name;
 	std::cout<<"> initialized successfully!"<<std::endl;
+	std::cout<<"with grade (rank): "<<grade<<"!"<<std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &src)
+	: name("Copied Bureaucrat")
 {
 	grade = src.grade;
 }
@@ -77,6 +84,9 @@ Bureaucrat::~Bureaucrat(void)
 	std::cout<<"Bureaucrat <"<<name;
 	std::cout<<"> destroyed successfully!"<<std::endl;
 }
+
+// Class functions 
+// ------------------------------------------------------------------------
 
 const std::string	Bureaucrat::getName(void) const
 {
@@ -104,37 +114,22 @@ void Bureaucrat::decrementGrade(void)
 		this->grade++;
 }
 
-void Bureaucrat::signForm(AForm &_form)
+void Bureaucrat::signForm(const class Form &_form)
 {
 
-	if (_form.getSign() == false && _form.getSignGrade() >= this->getGrade())	
+	if (_form.getSign() == true)	
 	{
 		std::cout<<name<<" signed "<<_form.getName()<<".";
 		std::cout<<std::endl;
-		//_form.beSigned(this);
 	}
 	else
 	{
-		std::cout<<name<<" couldn't sign form "<<_form.getName();
-		std::cout<<" because: \e[31m"<<this->getReason()<<"\e[0m"<<std::endl;
+		std::cout<<name<<" couldn't sign form "<<_form.getName()<<" with grade (";
+		std::cout<<_form.getSignGrade();
+		std::cout<<") because: \e[31m"<<"the Bureaucrat's grade ("<<this->getGrade(); 
+		std::cout<<") was too low!\e[0m";
+		std::cout<<std::endl;
 	}
-}
-
-std::ostream& operator << (std::ostream &out, Bureaucrat &src)
-{
-	out<<src.getName()<<", bureaucrat grade "<<src.getGrade();
-	out<<"."<<std::endl;
-	return (out);
-}
-
-std::string Bureaucrat::getReason(void) 
-{
-	return (this->reason);
-}
-
-void Bureaucrat::setReason(std::string _reason) const
-{
-	(void)_reason;
 }
 
 void Bureaucrat::executeForm(const AForm &form)
@@ -148,4 +143,14 @@ void Bureaucrat::executeForm(const AForm &form)
 		std::cout<<"\e[31mError:"<<e.what()<<std::endl;
 	}
 	//std::cout<<this->getName()<<" executed "<<form.getName()<<std::endl;
+}
+
+// Overloaded operators
+// ------------------------------------------------------------------------
+
+std::ostream& operator << (std::ostream &out, Bureaucrat &src)
+{
+	out<<src.getName()<<", bureaucrat grade "<<src.getGrade();
+	out<<"."<<std::endl;
+	return (out);
 }

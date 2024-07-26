@@ -40,11 +40,11 @@ class Bureaucrat::GradeTooLowException : public std::exception
 // Constructor class
 // ------------------------------------------------------------------------
 
-Bureaucrat::Bureaucrat() 
+Bureaucrat::Bureaucrat(void) 
 	: name("Unnamed Bureaucrat"), grade(150)
 {
 	std::cout<<"Bureaucrat <"<<name;
-	std::cout<<"> initialized successfully, ";
+	std::cout<<"> initialized successfully!"<<std::endl;
 	std::cout<<"with grade (rank): "<<grade<<"!"<<std::endl;
 }
 
@@ -52,7 +52,7 @@ Bureaucrat::Bureaucrat(std::string _name)
 	: name(_name), grade(150)
 {
 	std::cout<<"Bureaucrat <"<<name;
-	std::cout<<"> initialized successfully, ";
+	std::cout<<"> initialized successfully!"<<std::endl;
 	std::cout<<"with grade (rank): "<<grade<<"!"<<std::endl;
 }
 
@@ -64,7 +64,7 @@ Bureaucrat::Bureaucrat(std::string _name, int _grade)
 	else if (_grade > LOWEST)
 		throw GradeTooLowException(_name, ":Instantiating");
 	std::cout<<"Bureaucrat <"<<name;
-	std::cout<<"> initialized successfully, ";
+	std::cout<<"> initialized successfully!"<<std::endl;
 	std::cout<<"with grade (rank): "<<grade<<"!"<<std::endl;
 }
 
@@ -80,7 +80,7 @@ Bureaucrat Bureaucrat::operator = (const Bureaucrat &src)
 	return *this;
 }
 
-Bureaucrat::~Bureaucrat()
+Bureaucrat::~Bureaucrat(void)
 {
 	std::cout<<"Bureaucrat <"<<name;
 	std::cout<<"> destroyed successfully!"<<std::endl;
