@@ -11,7 +11,7 @@ int main(void)
 	try
 	{
 		Bureaucrat	Sergiu("Sergiu");
-		Bureaucrat	Jim("Jim", 155);
+		Bureaucrat	Jim("Jim", 150);
 		Bureaucrat	*Jon = new Bureaucrat("Jon", 1);
 		Bureaucrat	Ben(*Jon);
 		Bureaucrat	*Bob = new Bureaucrat("Bobby", 50);
