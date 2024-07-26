@@ -12,7 +12,7 @@ int main(void)
 		form1.beSigned(b1);
 	}
 	catch (std::exception &e) {
-		std::cout<<"\e[31mError:"<<e.what()<<std::endl;
+		std::cout<<"\e[31m\e[7mError:"<<e.what()<<std::endl;
 	}
 
 	b1.signForm(form1);

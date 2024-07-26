@@ -28,13 +28,13 @@ int main(void)
 		try {
 			Ben.incrementGrade();		
 		} catch (std::exception &e) {
-			std::cout<<"\e[41mERROR:\e[0m "<<e.what()<<std::endl;	
+			std::cout<<"\e[31m\e[7mError:"<<e.what()<<std::endl;
 		}
 
 		try {
 			Jim.decrementGrade();		
 		} catch (std::exception &e) {
-			std::cout<<"\e[41mERROR:\e[0m "<<e.what()<<std::endl;	
+			std::cout<<"\e[31m\e[7mError:"<<e.what()<<std::endl;
 		}
 		// creating empty pointer to save Bob's address and free it at the end;
 		Bureaucrat *empty_ptr = Bob;
@@ -47,7 +47,7 @@ int main(void)
 	}
 	catch(std::exception &e)
 	{
-		std::cout<<"\e[41mERROR:\e[0m "<<e.what()<<std::endl;	
+		std::cout<<"\e[31m\e[7mError:"<<e.what()<<std::endl;
 	}
 	atexit(chcklks);
 	return (0);

@@ -43,10 +43,15 @@ Form::Form(void)
 	: name("Unnamed Form"), isSigned(false),
 	  gradeSign(100), gradeExec(100)
 {
-	std::cout<<"Form <"<<this->getName();
+	std::cout<<"\e[42m\e[30m";
+	std::cout<<"Form < \e[106m"<<this->getName()<<"\e[0m";
+	std::cout<<"\e[42m\e[30m";
 	std::cout<<"> initialized successfully!";
 	std::cout<<" -- with required sign grade (rank): ";
-	std::cout<<this->getSignGrade()<<"!"<<std::endl;
+	std::cout<<"\e[106m"<<this->getSignGrade();
+	std::cout<<"\e[42m\e[30m";
+	std::cout<<"!"<<std::endl;
+	std::cout<<"\e[0m";
 }
 
 Form::Form(const std::string _name, const int signGrade, const int execGrade) 
@@ -57,10 +62,15 @@ Form::Form(const std::string _name, const int signGrade, const int execGrade)
 		throw GradeTooHighException(_name, ":Instantiating");
 	else if (this->gradeSign > LOWEST || this->gradeSign > LOWEST)
 		throw GradeTooLowException(_name, ":Instantiating");
-	std::cout<<"Form <"<<this->getName();
+	std::cout<<"\e[42m\e[30m";
+	std::cout<<"Form < \e[106m"<<this->getName()<<"\e[0m";
+	std::cout<<"\e[42m\e[30m";
 	std::cout<<"> initialized successfully!";
 	std::cout<<" -- with required sign grade (rank): ";
-	std::cout<<this->getSignGrade()<<"!"<<std::endl;
+	std::cout<<"\e[106m"<<this->getSignGrade();
+	std::cout<<"\e[42m\e[30m";
+	std::cout<<"!"<<std::endl;
+	std::cout<<"\e[0m";
 }
 
 Form::Form(const Form &src)
@@ -77,8 +87,11 @@ Form Form::operator = (const Form &src)
 
 Form::~Form(void)
 {
-	std::cout<<"Form <"<<this->getName();
+	std::cout<<"\e[45m";
+	std::cout<<"Form < \e[106m\e[31m"<<this->getName()<<"\e[0m";
+	std::cout<<"\e[45m";
 	std::cout<<"> destroyed successfully!"<<std::endl;
+	std::cout<<"\e[0m";
 }
 
 // Class functions 
