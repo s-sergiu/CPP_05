@@ -8,6 +8,8 @@
 #define HIGHEST 1
 #define LOWEST 150
 
+class Form;
+
 class Bureaucrat
 {
 	private:
@@ -26,7 +28,7 @@ class Bureaucrat
 		void				decrementGrade(void);
 		class				GradeTooHighException;
 		class				GradeTooLowException;
-		void				signForm(const class Form &);
+		void				signForm(const Form &);
 
 };
 
