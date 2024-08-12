@@ -125,7 +125,7 @@ void Bureaucrat::incrementGrade(void)
 		this->grade--;
 }
 
-void Bureaucrat::decrementGrade(void)
+void Bureaucrat::decrementGrade(void) 
 {
 	if (grade == LOWEST)
 		throw GradeTooLowException(name, ":Decrementing");
@@ -133,7 +133,7 @@ void Bureaucrat::decrementGrade(void)
 		this->grade++;
 }
 
-void Bureaucrat::signForm(const Form &_form)
+void Bureaucrat::signForm(const Form &_form) const
 {
 
 	if (_form.getSign() == true)	

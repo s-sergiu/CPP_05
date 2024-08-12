@@ -98,7 +98,7 @@ Form::~Form(void)
 // Class functions 
 // ------------------------------------------------------------------------
 
-void Form::beSigned(const Bureaucrat &src)
+void Form::beSigned(const Bureaucrat &src) 
 {
 	if (src.getGrade() <= this->getSignGrade())
 		this->isSigned = true;
