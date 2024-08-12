@@ -43,7 +43,7 @@ AForm::AForm(void)
 	: name("<AForm>"), isSigned(false),
 	  gradeSign(100), gradeExec(100)
 {
-	std::cout<<"AForm <"<<this->getName;
+	std::cout<<"AForm <"<<name;
 	std::cout<<"> initialized successfully!"<<std::endl;
 }
 
@@ -65,12 +65,6 @@ AForm::AForm(const AForm &src)
 	this->isSigned = src.getSign();
 }
 
-AForm AForm::operator = (const AForm &src)
-{
-	this->isSigned = src.getSign();
-	return *this;
-}
-
 AForm::~AForm(void)
 {
 	std::cout<<"AForm <"<<this->getName();
@@ -82,7 +76,7 @@ AForm::~AForm(void)
 
 void AForm::beSigned(const Bureaucrat *src) 
 {
-	if (src.getGrade() <= this->getSignGrade())
+	if (src->getGrade() <= this->getSignGrade())
 		this->isSigned = true;
 	else
 		throw(GradeTooLowException(name, "\e[31m:beSigned"));

@@ -29,8 +29,8 @@ class Bureaucrat
 		void				decrementGrade(void);
 		class				GradeTooHighException;
 		class				GradeTooLowException;
-		void				signForm(const Form &);
-		void				executeForm(const AForm &);
+		void				signForm(const AForm &) const;
+		void				executeForm(const AForm &) const;
 };
 
 std::ostream& operator << (std::ostream &, Bureaucrat &);

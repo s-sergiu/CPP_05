@@ -13,12 +13,12 @@ class AForm
 		bool				isSigned;
 		const int			gradeSign;
 		const int			gradeExec;
+		AForm operator = (const AForm &);
 	public:
 		AForm(void);
 		AForm(const std::string &);
 		AForm(const AForm &);
 		AForm(const std::string , const int , const int);
-		AForm operator = (const AForm &);
 		~AForm(void);
 		const std::string	getName(void) const;
 		bool				getSign(void) const;

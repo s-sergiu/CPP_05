@@ -38,7 +38,7 @@ std::string	ShrubberyCreationForm::getTarget(void) const
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	
-	std::ofstream out(this->getTarget().append("_shrubbery"));
+	std::ofstream out(this->getTarget().append("_shrubbery").c_str());
 
 	out<<executor.getName();
 	out<<"	                                               ."<<std::endl;
