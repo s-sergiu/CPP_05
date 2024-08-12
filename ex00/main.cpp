@@ -17,7 +17,6 @@ int main(void)
 		Bureaucrat	Ben(*Jon);
 		Bureaucrat	*Bob = new Bureaucrat("Bobby", 50);
 
-
 		try {
 			std::cout << std::endl;
 			std::cout << *Bob;
