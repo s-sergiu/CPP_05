@@ -80,7 +80,7 @@ AForm::~AForm(void)
 // Class functions 
 // ------------------------------------------------------------------------
 
-void AForm::beSigned(Bureaucrat const *src) 
+void AForm::beSigned(const Bureaucrat *src) 
 {
 	if (src.getGrade() <= this->getSignGrade())
 		this->isSigned = true;
@@ -115,7 +115,7 @@ std::ostream& operator << (std::ostream &out, AForm &src)
 {
 	out<<"AForm <"<<src.getName();
 	if (src.getSign() == 1) 
-		out<<"> is signed by "<<src.getSigner()<<".";
+		out<<"> is signed."; 
 	else
 		out<<"> is not signed.";
 	out<<std::endl;

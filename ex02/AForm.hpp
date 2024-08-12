@@ -26,8 +26,8 @@ class AForm
 		int					getExecGrade(void) const; 
 		class				GradeTooLowException;
 		class				GradeTooHighException;
-		void				beSigned(Bureaucrat const *);
-		virtual void		execute(Bureaucrat const &) const = 0;
+		void				beSigned(const Bureaucrat *);
+		virtual void		execute(const Bureaucrat &) const = 0;
 };
 
 std::ostream& operator << (std::ostream &, AForm &);
