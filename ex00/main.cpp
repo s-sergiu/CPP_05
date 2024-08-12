@@ -12,21 +12,22 @@ int main(void)
 	{
 		Bureaucrat	Sergiu("Sergiu");
 		Bureaucrat	Unnamed;
-		Bureaucrat	Jim("Jim", 150);
-		Bureaucrat	*Jon = new Bureaucrat("Jon", 1);
+		Bureaucrat	Jim("Jim", 149);
+		Bureaucrat	*Jon = new Bureaucrat("Jon", 2);
 		Bureaucrat	Ben(*Jon);
 		Bureaucrat	*Bob = new Bureaucrat("Bobby", 50);
 
-		std::cout << std::endl;
-		std::cout << *Bob;
-		std::cout << Sergiu;
-		std::cout << *Jon;
-		std::cout << Jim;
-		std::cout << Ben;
-		std::cout << std::endl;
 
 		try {
+			std::cout << std::endl;
+			std::cout << *Bob;
+			std::cout << Sergiu;
+			std::cout << *Jon;
+			std::cout << Jim;
+			std::cout << Ben;
+			std::cout << std::endl;
 			Ben.incrementGrade();		
+			Jon->incrementGrade();		
 		} catch (std::exception &e) {
 			std::cout<<"\e[31m\e[7mError:"<<e.what()<<std::endl;
 		}
@@ -40,7 +41,7 @@ int main(void)
 		Bureaucrat *empty_ptr = Bob;
 		Bob = Jon;
 
-		std::cout <<*Bob << std::endl;
+		std::cout <<*Jon << std::endl;
 
 		delete empty_ptr;
 		delete Jon;
