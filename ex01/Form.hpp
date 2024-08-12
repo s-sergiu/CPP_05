@@ -3,10 +3,11 @@
 #define FORM_HPP
 
 #include <iostream>
-#include "Bureaucrat.hpp"
 
 #define HIGHEST 1
 #define LOWEST 150
+
+class Bureaucrat;
 
 class Form 
 {
