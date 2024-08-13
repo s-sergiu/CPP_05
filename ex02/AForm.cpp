@@ -45,8 +45,6 @@ void AForm::beSigned(const Bureaucrat *src)
 	(void)src;
 	if (src->getGrade() <= this->getSignGrade())
 		this->isSigned = true;
-	else
-		std::cout<<"test";
 }
 
 bool AForm::getSign(void) const
