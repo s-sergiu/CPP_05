@@ -6,14 +6,16 @@
 
 int main(void)
 {
-	Bureaucrat b1("Sergiu", 100);
+	Bureaucrat b1("Sergiu", 145);
 	try
 	{
-		RobotomyRequestForm object("Home");
-		b1.signForm(object);
-		b1.executeForm(object);
-		std::cout<<"SignGrade: "<<object.getSignGrade()<<std::endl;
-		std::cout<<"ExecGrade: "<<object.getExecGrade()<<std::endl;
+		RobotomyRequestForm RForm("RobotomyForm");
+		PresidentialPardonForm PForm("PresidentialForm");
+		ShrubberyCreationForm SForm("ShrubberyForm");
+		b1.signForm(SForm);
+		b1.executeForm(SForm);
+		std::cout<<"SignGrade: "<<PForm.getSignGrade()<<std::endl;
+		std::cout<<"ExecGrade: "<<PForm.getExecGrade()<<std::endl;
 	}
 	catch (std::exception &e)
 	{
