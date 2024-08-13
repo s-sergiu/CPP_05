@@ -42,9 +42,10 @@ AForm::~AForm(void)
 
 void AForm::beSigned(const Bureaucrat *src) 
 {
-	(void)src;
 	if (src->getGrade() <= this->getSignGrade())
 		this->isSigned = true;
+	else
+		throw(GradeTooLowException(name, "\e[31m:beSigned"));
 }
 
 bool AForm::getSign(void) const
