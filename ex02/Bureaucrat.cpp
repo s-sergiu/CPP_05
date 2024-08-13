@@ -1,6 +1,6 @@
 
 #include "Bureaucrat.hpp"
-#include "AForm.hpp"
+
 // Exception class
 // ------------------------------------------------------------------------
 
@@ -132,11 +132,12 @@ void Bureaucrat::decrementGrade(void)
 		this->grade++;
 }
 
-void Bureaucrat::signForm(const AForm &_form) const
+void Bureaucrat::signForm(AForm &_form) const
 {
 
-	if (_form.getSign() == true)	
+	if (_form.getSignGrade() > this->getGrade())	
 	{
+		_form.beSigned();
 		std::cout<<"\e[102m";
 		std::cout<<this->getName()<<" signed "<<_form.getName()<<".";
 		std::cout<<"\e[0m";
@@ -165,7 +166,6 @@ void Bureaucrat::executeForm(const AForm &form) const
 	{
 		std::cout<<"\e[31mError:"<<e.what()<<std::endl;
 	}
-	//std::cout<<this->getName()<<" executed "<<form.getName()<<std::endl;
 }
 
 // Overloaded operators
