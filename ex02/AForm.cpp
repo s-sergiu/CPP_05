@@ -1,40 +1,6 @@
 
+#include "Bureaucrat.hpp"
 #include "AForm.hpp"
-
-// Exception class
-// ------------------------------------------------------------------------
-
-class AForm::GradeTooHighException : public std::exception
-{
-	private:
-		std::string _msg;
-	public:
-		GradeTooHighException(std::string _name, std::string msg) throw()
-			: _msg(msg.insert(0, _name)) {
-		_msg.insert(0, "\e[4m"); 
-		_msg.append(" \e[91m -> Grade too high!\e[0m"); 
-		}
-		~GradeTooHighException() throw() {}
-		const char* what() const throw() {
-			return _msg.c_str();
-		}
-};
-
-class AForm::GradeTooLowException : public std::exception
-{
-	private:
-		std::string _msg;
-	public:
-		GradeTooLowException(std::string _name, std::string msg) throw()
-			: _msg(msg.insert(0, _name)) {
-		_msg.insert(0, "\e[4m"); 
-		_msg.append(" \e[91m -> Grade too low!\e[0m"); 
-		}
-		~GradeTooLowException() throw() {}
-		const char* what() const throw() {
-			return _msg.c_str();
-		}
-};
 
 // Constructor class
 // ------------------------------------------------------------------------
@@ -74,9 +40,13 @@ AForm::~AForm(void)
 // Class functions 
 // ------------------------------------------------------------------------
 
-void AForm::beSigned(void) 
+void AForm::beSigned(const Bureaucrat *src) 
 {
-	this->isSigned = true;
+	(void)src;
+	if (src->getGrade() <= this->getSignGrade())
+		this->isSigned = true;
+	else
+		std::cout<<"test";
 }
 
 bool AForm::getSign(void) const
