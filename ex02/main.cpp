@@ -16,14 +16,13 @@ int main(void)
 		RobotomyRequestForm RForm("RobotomyForm");
 		PresidentialPardonForm PForm("PresidentialForm");
 		ShrubberyCreationForm SForm("ShrubberyForm");
+
 		b1.signForm(SForm);
 		b1.executeForm(SForm);
 		b1.signForm(PForm);
 		b1.executeForm(PForm);
 		b1.signForm(RForm);
 		b1.executeForm(RForm);
-		std::cout<<"SignGrade: "<<PForm.getSignGrade()<<std::endl;
-		std::cout<<"ExecGrade: "<<PForm.getExecGrade()<<std::endl;
 	}
 	catch (std::exception &e)
 	{
