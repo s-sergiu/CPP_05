@@ -132,25 +132,25 @@ void Bureaucrat::decrementGrade(void)
 		this->grade++;
 }
 
-void Bureaucrat::signForm(AForm &_form) const
+void Bureaucrat::signForm(AForm &form) const
 {
 
-	if (_form.getSignGrade() > this->getGrade())	
+	form.beSigned(this);
+	if (form.getSign() == true)	
 	{
-		_form.beSigned();
 		std::cout<<"\e[102m";
-		std::cout<<this->getName()<<" signed "<<_form.getName()<<".";
+		std::cout<<this->getName()<<" signed "<<form.getName()<<".";
 		std::cout<<"\e[0m";
 		std::cout<<std::endl;
 	}
 	else
 	{
 		std::cout<<"\e[101m";
-		std::cout<<this->getName()<<" couldn't sign form "<<_form.getName();
-		std::cout<<" with grade ("<<_form.getSignGrade();
+		std::cout<<this->getName()<<" couldn't sign form "<<form.getName();
+		std::cout<<" with grade ("<<form.getSignGrade();
 		std::cout<<") because: \e[92m"<<"the Bureaucrat's grade (";
 		std::cout<<this->getGrade()<<") was too low";
-		std::cout<<" than the form's grade ("<<_form.getSignGrade()<<")!\e[0m";
+		std::cout<<" than the form's grade ("<<form.getSignGrade()<<")!\e[0m";
 		std::cout<<"\e[0m";
 		std::cout<<std::endl;
 	}
@@ -158,13 +158,18 @@ void Bureaucrat::signForm(AForm &_form) const
 
 void Bureaucrat::executeForm(const AForm &form) const
 {
-	try
-	{
+	try {
 		form.execute(*this);		
-	}
-	catch (std::exception &e)
-	{
+	} catch (std::exception &e) {
+		std::cout<<"\e[101m";
+		std::cout<<this->getName()<<" couldn't exec form "<<form.getName();
+		std::cout<<" with grade ("<<form.getExecGrade();
+		std::cout<<") because: \e[92m"<<"the Bureaucrat's grade (";
+		std::cout<<this->getGrade()<<") was too low";
+		std::cout<<" than the form's grade ("<<form.getExecGrade()<<")!\e[0m";
+		std::cout<<"\e[0m"<<std::endl;
 		std::cout<<"\e[31mError:"<<e.what()<<std::endl;
+		std::cout<<std::endl;
 	}
 }
 

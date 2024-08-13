@@ -9,8 +9,6 @@
 #define HIGHEST 1
 #define LOWEST 150
 
-class AForm;
-
 class Bureaucrat
 {
 	private:
