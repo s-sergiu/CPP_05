@@ -26,7 +26,7 @@ class AForm
 		int					getExecGrade(void) const; 
 		class				GradeTooLowException;
 		class				GradeTooHighException;
-		void				beSigned(const Bureaucrat *);
+		void				beSigned(void);
 		virtual void		execute(const Bureaucrat &) const = 0;
 };
 
