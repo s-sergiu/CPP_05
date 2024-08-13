@@ -135,22 +135,23 @@ void Bureaucrat::decrementGrade(void)
 void Bureaucrat::signForm(AForm &form) const
 {
 
-	form.beSigned(this);
-	if (form.getSign() == true)	
-	{
-		std::cout<<"\e[102m";
-		std::cout<<this->getName()<<" signed "<<form.getName()<<".";
-		std::cout<<"\e[0m";
-		std::cout<<std::endl;
-	}
-	else
-	{
+	try {
+		form.beSigned(this);
+	} catch (std::exception &e) {
 		std::cout<<"\e[101m";
 		std::cout<<this->getName()<<" couldn't sign form "<<form.getName();
 		std::cout<<" with grade ("<<form.getSignGrade();
 		std::cout<<") because: \e[92m"<<"the Bureaucrat's grade (";
 		std::cout<<this->getGrade()<<") was too low";
 		std::cout<<" than the form's grade ("<<form.getSignGrade()<<")!\e[0m";
+		std::cout<<"\e[0m";
+		std::cout<<std::endl;
+		std::cout<<"\e[31mError:"<<e.what()<<std::endl;
+	}
+	if (form.getSign() == true)	
+	{
+		std::cout<<"\e[102m";
+		std::cout<<this->getName()<<" signed "<<form.getName()<<".";
 		std::cout<<"\e[0m";
 		std::cout<<std::endl;
 	}
