@@ -5,7 +5,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include "Bureaucrat.hpp"
+
+class AForm;
 
 class RobotomyRequestForm : public AForm
 {

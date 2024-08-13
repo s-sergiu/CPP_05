@@ -1,39 +1,9 @@
 
+#include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
-class AForm::GradeTooHighException : public std::exception
-{
-	private:
-		std::string _msg;
-		std::string _name;
-		std::string _error;
-	public:
-		GradeTooHighException(std::string _name, std::string msg) 
-			: _msg(msg.insert(0, _name)), 
-			  _name(_name), 
-			  _error("->Grade too High!\e[0m") { _msg.append(_error); }
-		~GradeTooHighException() throw() {}
-		const char* what() const throw() {
-			return _msg.c_str();
-		}
-};
-
-class AForm::GradeTooLowException : public std::exception
-{
-	private:
-		std::string _msg;
-		std::string _name;
-		std::string _error;
-	public:
-		GradeTooLowException(std::string _name, std::string msg) 
-			: _msg(msg.insert(0, _name)), 
-			  _name(_name), 
-			  _error("->Grade too Low!\e[0m") { _msg.append(_error); }
-		~GradeTooLowException() throw() {}
-		const char* what() const throw() {
-			return _msg.c_str();
-		}
-};
+// Constructor class
+// ------------------------------------------------------------------------
 
 AForm::AForm(void) 
 	: name("<AForm>"), isSigned(false),
@@ -51,7 +21,7 @@ AForm::AForm(const std::string _name, const int signGrade, const int execGrade)
 		throw GradeTooHighException(_name, ":Instantiating");
 	else if (signGrade < HIGHEST || execGrade < HIGHEST)
 		throw GradeTooLowException(_name, ":Instantiating");
-	std::cout<<"AForm <"<<name;
+	std::cout<<"AForm <"<<this->getName();
 	std::cout<<"> initialized successfully!"<<std::endl;
 }
 
@@ -61,44 +31,21 @@ AForm::AForm(const AForm &src)
 	this->isSigned = src.getSign();
 }
 
-/*
-AForm AForm::operator = (const AForm &src)
-{
-	this->isSigned = src.getSign();
-	return *this;
-}
-*/
-
 AForm::~AForm(void)
 {
-	std::cout<<"AForm <"<<name;
+	std::cout<<"AForm <"<<this->getName();
 	std::cout<<"> destroyed successfully!"<<std::endl;
 }
 
-std::ostream& operator << (std::ostream &out, AForm &src)
-{
-	out<<"AForm <"<<src.getName();
-	if (src.getSign() == 1) 
-		out<<"> is signed by "<<src.getSigner()<<".";
-	else
-		out<<"> is not signed.";
-	out<<std::endl;
-	return (out);
-}
+// Class functions 
+// ------------------------------------------------------------------------
 
-void AForm::beSigned(Bureaucrat const *src) const
+void AForm::beSigned(const Bureaucrat *src) 
 {
-	if (src->getGrade() <= gradeSign)
-	{
-		this->beSigned(src);
-		this->setSigner(src);
-		std::cout<<"Form signed by "<<src->getName()<<std::endl;
-	}
+	if (src->getGrade() <= this->getSignGrade())
+		this->isSigned = true;
 	else
-	{
-		src->setReason("Grade too Low!\e[0m");
 		throw(GradeTooLowException(name, "\e[31m:beSigned"));
-	}
 }
 
 bool AForm::getSign(void) const
@@ -121,12 +68,16 @@ int AForm::getExecGrade(void) const
 	return (this->gradeExec);
 }
 
-const std::string AForm::getSigner(void) const
-{
-	return (this->signer->getName());
-}
+// Overloaded operators
+// ------------------------------------------------------------------------
 
-void AForm::setSigner(Bureaucrat const *b) const
+std::ostream& operator << (std::ostream &out, AForm &src)
 {
-	signer = &b;
+	out<<"AForm <"<<src.getName();
+	if (src.getSign() == 1) 
+		out<<"> is signed."; 
+	else
+		out<<"> is not signed.";
+	out<<std::endl;
+	return (out);
 }

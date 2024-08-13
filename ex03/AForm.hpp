@@ -2,7 +2,7 @@
 #ifndef AFORM_HPP
 #define AFORM_HPP
 
-#include "Bureaucrat.hpp"
+#include <ostream>
 
 class Bureaucrat;
 
@@ -13,28 +13,52 @@ class AForm
 		bool				isSigned;
 		const int			gradeSign;
 		const int			gradeExec;
-		Bureaucrat			*signer;
+		AForm operator = (const AForm &);
 	public:
+		class GradeTooHighException : public std::exception
+		{
+			private:
+				std::string _msg;
+			public:
+				GradeTooHighException(std::string _name, std::string msg) throw()
+					: _msg(msg.insert(0, _name)) {
+				_msg.insert(0, "\e[4m"); 
+				_msg.append(" \e[91m -> Grade too high!\e[0m"); 
+				}
+				~GradeTooHighException() throw() {}
+				const char* what() const throw() {
+					return _msg.c_str();
+				}
+		};
+
+		class GradeTooLowException : public std::exception
+		{
+			private:
+				std::string _msg;
+			public:
+				GradeTooLowException(std::string _name, std::string msg) throw()
+					: _msg(msg.insert(0, _name)) {
+				_msg.insert(0, "\e[4m"); 
+				_msg.append(" \e[91m -> Grade too low!\e[0m"); 
+				}
+				~GradeTooLowException() throw() {}
+				const char* what() const throw() {
+					return _msg.c_str();
+				}
+		};
 		AForm(void);
-		AForm(const std::string &target);
-		AForm(const AForm &src);
-		AForm(const std::string _name, const int signGrade, const int execGrade);
-		//AForm operator = (const AForm &src);
+		AForm(const std::string &);
+		AForm(const AForm &);
+		AForm(const std::string , const int , const int);
 		~AForm(void);
 		const std::string	getName(void) const;
 		bool				getSign(void) const;
 		int					getSignGrade(void) const;
 		int					getExecGrade(void) const; 
-		void				beSigned(Bureaucrat const &src) const;
-		class				GradeTooLowException;
-		class				GradeTooHighException;
-		const std::string	getSigner(void) const;
-		void				setSigner(Bureaucrat const *b) const;
-		virtual void		execute(Bureaucrat const & executor) const = 0;
-
-
+		void				beSigned(const Bureaucrat *);
+		virtual void		execute(const Bureaucrat &) const = 0;
 };
 
-std::ostream& operator << (std::ostream &out, AForm &src);
+std::ostream& operator << (std::ostream &, AForm &);
 
 #endif

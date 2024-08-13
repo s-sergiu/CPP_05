@@ -1,4 +1,6 @@
 
+#include "AForm.hpp"
+#include "Bureaucrat.hpp"
 #include "RobotomyRequestForm.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target)
@@ -6,7 +8,7 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string &target)
 {
 	this->target = target;
 	this->isSigned = false;
-	std::cout<<"AForm <"<<name;
+	std::cout<<"AForm <"<<this->AForm::getName();
 	std::cout<<"> initialized successfully!"<<std::endl;
 }
 
@@ -26,7 +28,7 @@ RobotomyRequestForm RobotomyRequestForm::operator = (const RobotomyRequestForm &
 
 RobotomyRequestForm::~RobotomyRequestForm(void)
 {
-	std::cout<<"AForm <"<<name;
+	std::cout<<"AForm <"<<this->AForm::getName();
 	std::cout<<"> destroyed successfully!"<<std::endl;
 }
 
@@ -37,17 +39,18 @@ std::string	RobotomyRequestForm::getTarget(void) const
 
 void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
-	//check if the form is signed and grade is high enough;
-	srand(time(NULL));
-	std::cout<<"Executor's grade: "<<executor.getGrade()<<std::endl;
-	std::cout<<"Form's grade: "<<this->getExecGrade()<<std::endl;
-	if (this->getSign() == true && executor.getGrade() <= this->getExecGrade())
+	if (executor.getGrade() <= this->getExecGrade())
 	{
 		std::cout<<"Brrrrrrrrrrrrrrrrrrrrrrrrrr....!!!!!!"<<std::endl;
-		if (rand() % 2)
-			std::cout<<this->getTarget()<<" has been robotomized succesfully!"<<std::endl;
-		else
-			std::cout<<this->getTarget()<<" has not been robotomized succesfully!"<<std::endl;
+		srand(time(NULL));
+		if (rand() % 2) {
+			std::cout<<this->getTarget();
+			std::cout<<" has been robotomized succesfully!"<<std::endl;
+		} else {
+			std::cout<<this->getTarget();
+			std::cout<<" has not been robotomized succesfully!"<<std::endl;
+		}
 	}
-	(void)executor;	
+	else 
+		throw AForm::GradeTooLowException(this->getName(), ": Executing!");
 }

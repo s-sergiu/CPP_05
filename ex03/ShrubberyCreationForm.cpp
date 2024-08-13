@@ -38,36 +38,45 @@ std::string	ShrubberyCreationForm::getTarget(void) const
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	
-	std::ofstream out(this->getTarget().append("_shrubbery"));
-
-	out<<executor.getName();
-	out<<"	                                               ."<<std::endl;
-	out<<"					     .        ;"<<std::endl;
-	out<<"		.              .              ;%     ;;"<<std::endl;
-	out<<"                  ,           ,                :;%  %;"<<std::endl;
-	out<<"                   :         ;                   :;%;'     .,"<<std::endl;
-	out<<"          ,.        %;     %;            ;        %;'    ,;"<<std::endl;
-	out<<"            ;       ;%;  %%;        ,     %;    ;%;    ,%'"<<std::endl;
-	out<<"             %;       %;%;      ,  ;       %;  ;%;   ,%;'"<<std::endl;
-	out<<"              ;%;      %;        ;%;        % ;%;  ,%;'"<<std::endl;
-	out<<"               `%;.     ;%;     %;'         `;%%;.%;'"<<std::endl;
-	out<<"                `:;%.    ;%%. %@;        %; ;@%;%'"<<std::endl;
-	out<<"                   `:%;.  :;bd%;          %;@%;'"<<std::endl;
-	out<<"                     `@%:.  :;%.         ;@@%;'"<<std::endl;
-	out<<"                       `@%.  `;@%.      ;@@%;"<<std::endl;
-	out<<"                         `@%%. `@%%    ;@@%;"<<std::endl;
-	out<<"                           ;@%. :@%%  %@@%;"<<std::endl;
-	out<<"                             %@bd%%%bd%%:;"<<std::endl;
-	out<<"                               #@%%%%%:;;"<<std::endl;
-	out<<"                               %@@%%%::;"<<std::endl;
-	out<<"                               %@@@%(o);  . '"<<std::endl;
-	out<<"                               %@@@o%;:(.,'"<<std::endl;
-	out<<"                           `.. %@@@o%::;"<<std::endl;
-	out<<"                              `)@@@o%::;"<<std::endl;
-	out<<"                               %@@(o)::;"<<std::endl;
-	out<<"                              .%@@@@%::;"<<std::endl;
-	out<<"                              ;%@@@@%::;."<<std::endl;
-	out<<"                             ;%@@@@%%:;;;."<<std::endl;
-	out<<"                         ...;%@@@@@%%:;;;;,.."<<std::endl;
-	out.close();
+	if (executor.getGrade() <= this->getExecGrade()) {
+		std::ofstream out(this->getTarget().append("_shrubbery").c_str());
+		out<<"	                                               ."<<std::endl;
+		out<<"					     .        ;"<<std::endl;
+		out<<"		.              .              ;%     ;;"<<std::endl;
+		out<<"                  ,           ,                :;%  %;"<<std::endl;
+		out<<"                   :         ;                   :;%;'     .,";
+		out<<std::endl;
+		out<<"          ,.        %;     %;            ;        %;'    ,;";
+		out<<std::endl;
+		out<<"            ;       ;%;  %%;        ,     %;    ;%;    ,%'";
+		out<<std::endl;
+		out<<"             %;       %;%;      ,  ;       %;  ;%;   ,%;'";
+		out<<std::endl;
+		out<<"              ;%;      %;        ;%;        % ;%;  ,%;'";
+		out<<std::endl;
+		out<<"               `%;.     ;%;     %;'         `;%%;.%;'";
+		out<<std::endl;
+		out<<"                `:;%.    ;%%. %@;        %; ;@%;%'";
+		out<<std::endl;
+		out<<"                   `:%;.  :;bd%;          %;@%;'"<<std::endl;
+		out<<"                     `@%:.  :;%.         ;@@%;'"<<std::endl;
+		out<<"                       `@%.  `;@%.      ;@@%;"<<std::endl;
+		out<<"                         `@%%. `@%%    ;@@%;"<<std::endl;
+		out<<"                           ;@%. :@%%  %@@%;"<<std::endl;
+		out<<"                             %@bd%%%bd%%:;"<<std::endl;
+		out<<"                               #@%%%%%:;;"<<std::endl;
+		out<<"                               %@@%%%::;"<<std::endl;
+		out<<"                               %@@@%(o);  . '"<<std::endl;
+		out<<"                               %@@@o%;:(.,'"<<std::endl;
+		out<<"                           `.. %@@@o%::;"<<std::endl;
+		out<<"                              `)@@@o%::;"<<std::endl;
+		out<<"                               %@@(o)::;"<<std::endl;
+		out<<"                              .%@@@@%::;"<<std::endl;
+		out<<"                              ;%@@@@%::;."<<std::endl;
+		out<<"                             ;%@@@@%%:;;;."<<std::endl;
+		out<<"                         ...;%@@@@@%%:;;;;,.."<<std::endl;
+		out.close();
+	} else {
+		throw AForm::GradeTooLowException(this->getName(), ": Executing!");
+	}
 }
