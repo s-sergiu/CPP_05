@@ -4,21 +4,17 @@
 
 #include <iostream>
 #include <exception>
+#include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
 class Intern
 {
-	private:
 	public:
 		Intern(void);
-		Intern(std::string);
-		Intern(std::string, int);
-		Intern(const Bureaucrat &);
-		Bureaucrat operator = (const Bureaucrat &);
+		Intern(const Intern &);
+		Intern operator = (const Intern &);
 		~Intern(void);
-		AForm*	makeForm(std::string, std::string) const;
+		void makeForm(const std::string &,const std::string &) const;
 };
-
-std::ostream& operator << (std::ostream &, Intern &);
 
 #endif
