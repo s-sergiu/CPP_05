@@ -8,6 +8,6 @@ int main(void)
 	AForm* rrf;
 
 	(void)rrf;
-	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	someRandomIntern.makeForm("robotomy request", "Bender");
 	return (0);
 }
