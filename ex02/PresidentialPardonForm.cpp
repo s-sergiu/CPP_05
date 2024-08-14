@@ -6,8 +6,6 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string &target)
 {
 	this->target = target;
 	this->isSigned = false;
-	std::cout<<"AForm <"<<name;
-	std::cout<<"> initialized successfully!"<<std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src)
@@ -26,8 +24,6 @@ PresidentialPardonForm PresidentialPardonForm::operator = (const PresidentialPar
 
 PresidentialPardonForm::~PresidentialPardonForm(void)
 {
-	std::cout<<"AForm <"<<name;
-	std::cout<<"> destroyed successfully!"<<std::endl;
 }
 
 std::string	PresidentialPardonForm::getTarget(void) const
