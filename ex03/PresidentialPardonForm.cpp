@@ -1,6 +1,9 @@
 
 #include "PresidentialPardonForm.hpp"
 
+// Constructor class
+// ------------------------------------------------------------------------
+
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target)
 	: AForm("PresidentialForm", 25, 5)
 {
@@ -30,6 +33,9 @@ std::string	PresidentialPardonForm::getTarget(void) const
 {
 	return (this->target);
 }
+
+// Class functions 
+// ------------------------------------------------------------------------
 
 void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {

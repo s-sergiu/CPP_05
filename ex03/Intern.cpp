@@ -5,6 +5,9 @@
 #include "PresidentialPardonForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
+// Exception class
+// ------------------------------------------------------------------------
+
 class Intern::UnableToInitForm : public std::exception
 {
 	private:
@@ -42,6 +45,9 @@ Intern Intern::operator = (const Intern &src)
 Intern::~Intern(void)
 {
 }
+
+// Class functions 
+// ------------------------------------------------------------------------
 
 AForm* Intern::makeForm(const std::string &name, const std::string &target) const 
 {

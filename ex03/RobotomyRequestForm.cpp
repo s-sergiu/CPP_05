@@ -3,6 +3,9 @@
 #include "Bureaucrat.hpp"
 #include "RobotomyRequestForm.hpp"
 
+// Constructor class
+// ------------------------------------------------------------------------
+
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target)
 	: AForm("RobotomyForm", 72, 45)
 {
@@ -32,6 +35,9 @@ std::string	RobotomyRequestForm::getTarget(void) const
 {
 	return (this->target);
 }
+
+// Class functions 
+// ------------------------------------------------------------------------
 
 void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {

@@ -1,6 +1,9 @@
 
 #include "ShrubberyCreationForm.hpp"
 
+// Constructor class
+// ------------------------------------------------------------------------
+
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
 	: AForm("ShrubberyForm", 145, 137)
 {
@@ -30,6 +33,9 @@ std::string	ShrubberyCreationForm::getTarget(void) const
 {
 	return (this->target);
 }
+
+// Class functions 
+// ------------------------------------------------------------------------
 
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
