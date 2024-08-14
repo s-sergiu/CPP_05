@@ -8,8 +8,6 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string &target)
 {
 	this->target = target;
 	this->isSigned = false;
-	std::cout<<"AForm <"<<this->AForm::getName();
-	std::cout<<"> initialized successfully!"<<std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src)
@@ -28,8 +26,6 @@ RobotomyRequestForm RobotomyRequestForm::operator = (const RobotomyRequestForm &
 
 RobotomyRequestForm::~RobotomyRequestForm(void)
 {
-	std::cout<<"AForm <"<<this->AForm::getName();
-	std::cout<<"> destroyed successfully!"<<std::endl;
 }
 
 std::string	RobotomyRequestForm::getTarget(void) const

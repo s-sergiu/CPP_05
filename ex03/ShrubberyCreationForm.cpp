@@ -6,8 +6,6 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
 {
 	this->target = target;
 	this->isSigned = false;
-	std::cout<<"AForm <"<<name;
-	std::cout<<"> initialized successfully!"<<std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src)
@@ -26,8 +24,6 @@ ShrubberyCreationForm ShrubberyCreationForm::operator = (const ShrubberyCreation
 
 ShrubberyCreationForm::~ShrubberyCreationForm(void)
 {
-	std::cout<<"AForm <"<<name;
-	std::cout<<"> destroyed successfully!"<<std::endl;
 }
 
 std::string	ShrubberyCreationForm::getTarget(void) const
