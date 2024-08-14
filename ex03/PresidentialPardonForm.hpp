@@ -19,6 +19,4 @@ class PresidentialPardonForm : public AForm
 		void		execute(Bureaucrat const & executor) const;
 };
 
-std::ostream& operator << (std::ostream &out, AForm &src);
-
 #endif

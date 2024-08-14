@@ -21,6 +21,4 @@ class ShrubberyCreationForm : public AForm
 		void		execute(Bureaucrat const & executor) const;
 };
 
-std::ostream& operator << (std::ostream &, AForm &);
-
 #endif
