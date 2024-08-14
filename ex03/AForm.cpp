@@ -73,11 +73,7 @@ int AForm::getExecGrade(void) const
 
 std::ostream& operator << (std::ostream &out, AForm &src)
 {
-	out<<"AForm <"<<src.getName();
-	if (src.getSign() == 1) 
-		out<<"> is signed."; 
-	else
-		out<<"> is not signed.";
+	out<<"AForm <"<<src.getName()<<">!";
 	out<<std::endl;
 	return (out);
 }
