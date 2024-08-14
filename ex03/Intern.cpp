@@ -5,6 +5,22 @@
 #include "PresidentialPardonForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
+class Intern::UnableToInitForm : public std::exception
+{
+	private:
+		std::string _msg;
+	public:
+		UnableToInitForm(std::string _name) throw()
+			: _msg(_name) { 
+		_msg.insert(0, "\e[4m"); 
+		_msg.append(" \e[91m -> Unable to init Form!\e[0m"); 
+		}
+		~UnableToInitForm() throw() {}
+		const char* what() const throw() {
+			return _msg.c_str();
+		}
+};
+
 // Constructor class
 // ------------------------------------------------------------------------
 
@@ -52,9 +68,9 @@ AForm* Intern::makeForm(const std::string &name, const std::string &target) cons
 			std::cout<<"Intern creates "<<*form;
 			break;
 		default:
-			form = NULL;
 			std::cout<<"Intern cannot create form because the name -";
 			std::cout<<name<<"- was not found!"<<std::endl;
+			throw UnableToInitForm("Incorrect Name");
 	}
 	return (form);
 }

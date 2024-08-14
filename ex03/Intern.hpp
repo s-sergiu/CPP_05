@@ -22,6 +22,7 @@ class Intern
 		Intern(const Intern &);
 		Intern operator = (const Intern &);
 		~Intern(void);
+		class UnableToInitForm;
 		AForm* makeForm(const std::string &,const std::string &) const;
 };
 
